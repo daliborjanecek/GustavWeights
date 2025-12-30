@@ -7,48 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF00F46A2BA6278A0012826C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00F4692BA6278A0012826C /* BGImageView.swift */; };
-		CF1740AC2BA769BB00C7AC5C /* PersonalRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1740AB2BA769BB00C7AC5C /* PersonalRecordView.swift */; };
-		CF5E9AEC2BC1694A008490BC /* PullToActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5E9AEB2BC1694A008490BC /* PullToActionView.swift */; };
+		CF66587E2F0430BB00675713 /* MartianGrotesk-CnBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF6658792F0430BB00675713 /* MartianGrotesk-CnBd.ttf */; };
+		CF66587F2F0430BB00675713 /* MartianGrotesk-StdBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF6658732F0430BB00675713 /* MartianGrotesk-StdBd.ttf */; };
+		CF6658802F0430BB00675713 /* MartianGrotesk-StdLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF6658742F0430BB00675713 /* MartianGrotesk-StdLt.ttf */; };
+		CF6658812F0430BB00675713 /* MartianGrotesk-CnLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF66587A2F0430BB00675713 /* MartianGrotesk-CnLt.ttf */; };
+		CF6658822F0430BB00675713 /* MartianGrotesk-StdRg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF6658762F0430BB00675713 /* MartianGrotesk-StdRg.ttf */; };
+		CF6658832F0430BB00675713 /* MartianGrotesk-CnMd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF66587B2F0430BB00675713 /* MartianGrotesk-CnMd.ttf */; };
+		CF6658842F0430BB00675713 /* MartianGrotesk-CnRg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF66587C2F0430BB00675713 /* MartianGrotesk-CnRg.ttf */; };
+		CF6658852F0430BB00675713 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF6658772F0430BB00675713 /* MartianMono-Regular.ttf */; };
+		CF6658862F0430BB00675713 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF6658782F0430BB00675713 /* MartianMono-Bold.ttf */; };
+		CF6658872F0430BB00675713 /* MartianGrotesk-StdMd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF6658752F0430BB00675713 /* MartianGrotesk-StdMd.ttf */; };
+		CF66588A2F0431D500675713 /* TrainingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6658892F0431D000675713 /* TrainingModel.swift */; };
+		CF66588C2F0432B300675713 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66588B2F0432B000675713 /* ExerciseModel.swift */; };
+		CF66588E2F04343200675713 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66588D2F04343000675713 /* Theme.swift */; };
+		CF6658902F0437D900675713 /* AddExerciseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF66588F2F0437C100675713 /* AddExerciseSheet.swift */; };
 		CF9240F42B9DD2F7008A968D /* GustavWeightsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9240F32B9DD2F7008A968D /* GustavWeightsApp.swift */; };
 		CF9240F62B9DD2F7008A968D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9240F52B9DD2F7008A968D /* ContentView.swift */; };
 		CF9240F82B9DD2F8008A968D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF9240F72B9DD2F8008A968D /* Assets.xcassets */; };
 		CF9240FB2B9DD2F8008A968D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF9240FA2B9DD2F8008A968D /* Preview Assets.xcassets */; };
-		CF9241022B9DD44C008A968D /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9241012B9DD44C008A968D /* Weight.swift */; };
-		CF98C4B52BDEB2D700FA4E18 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */; };
-		CFAA18AF2BA5CA0600235E1A /* AddWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */; };
-		CFAA18B12BA5CEEC00235E1A /* EditExerciseNameSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B02BA5CEEC00235E1A /* EditExerciseNameSheet.swift */; };
-		CFAA18B32BA5CF6100235E1A /* EditWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */; };
-		CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */; };
-		CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */; };
-		CFAA18B92BA5EC1A00235E1A /* SingleValueEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B82BA5EC1A00235E1A /* SingleValueEditView.swift */; };
-		CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */; };
-		CFE695182BC129EE002ECD65 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE695172BC129EE002ECD65 /* ExerciseView.swift */; };
-		CFE8593D2BA239A5001C3A09 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE8593B2BA239A5001C3A09 /* MartianMono-Bold.ttf */; };
-		CFE8593E2BA239A5001C3A09 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE8593C2BA239A5001C3A09 /* MartianMono-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF00F4692BA6278A0012826C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
-		CF1740AB2BA769BB00C7AC5C /* PersonalRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalRecordView.swift; sourceTree = "<group>"; };
-		CF5E9AEB2BC1694A008490BC /* PullToActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToActionView.swift; sourceTree = "<group>"; };
+		CF6658732F0430BB00675713 /* MartianGrotesk-StdBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdBd.ttf"; sourceTree = "<group>"; };
+		CF6658742F0430BB00675713 /* MartianGrotesk-StdLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdLt.ttf"; sourceTree = "<group>"; };
+		CF6658752F0430BB00675713 /* MartianGrotesk-StdMd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdMd.ttf"; sourceTree = "<group>"; };
+		CF6658762F0430BB00675713 /* MartianGrotesk-StdRg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdRg.ttf"; sourceTree = "<group>"; };
+		CF6658772F0430BB00675713 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
+		CF6658782F0430BB00675713 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
+		CF6658792F0430BB00675713 /* MartianGrotesk-CnBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnBd.ttf"; sourceTree = "<group>"; };
+		CF66587A2F0430BB00675713 /* MartianGrotesk-CnLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnLt.ttf"; sourceTree = "<group>"; };
+		CF66587B2F0430BB00675713 /* MartianGrotesk-CnMd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnMd.ttf"; sourceTree = "<group>"; };
+		CF66587C2F0430BB00675713 /* MartianGrotesk-CnRg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnRg.ttf"; sourceTree = "<group>"; };
+		CF6658892F0431D000675713 /* TrainingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingModel.swift; sourceTree = "<group>"; };
+		CF66588B2F0432B000675713 /* ExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseModel.swift; sourceTree = "<group>"; };
+		CF66588D2F04343000675713 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		CF66588F2F0437C100675713 /* AddExerciseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseSheet.swift; sourceTree = "<group>"; };
 		CF9240F02B9DD2F7008A968D /* GustavWeights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GustavWeights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9240F32B9DD2F7008A968D /* GustavWeightsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavWeightsApp.swift; sourceTree = "<group>"; };
 		CF9240F52B9DD2F7008A968D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CF9240F72B9DD2F8008A968D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF9240FA2B9DD2F8008A968D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CF9241012B9DD44C008A968D /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
-		CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
-		CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightSheet.swift; sourceTree = "<group>"; };
-		CFAA18B02BA5CEEC00235E1A /* EditExerciseNameSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseNameSheet.swift; sourceTree = "<group>"; };
-		CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeightSheet.swift; sourceTree = "<group>"; };
-		CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSheet.swift; sourceTree = "<group>"; };
-		CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseSheet.swift; sourceTree = "<group>"; };
-		CFAA18B82BA5EC1A00235E1A /* SingleValueEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleValueEditView.swift; sourceTree = "<group>"; };
-		CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
-		CFE695172BC129EE002ECD65 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
-		CFE8593B2BA239A5001C3A09 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
-		CFE8593C2BA239A5001C3A09 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
 		CFE8593F2BA239E6001C3A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,38 +61,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CF00F4662BA61D040012826C /* Sheets */ = {
-			isa = PBXGroup;
-			children = (
-				CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */,
-				CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */,
-				CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */,
-				CFAA18B02BA5CEEC00235E1A /* EditExerciseNameSheet.swift */,
-				CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */,
-			);
-			path = Sheets;
-			sourceTree = "<group>";
-		};
 		CF00F4672BA61F2D0012826C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */,
-				CF9241012B9DD44C008A968D /* Weight.swift */,
+				CF66588B2F0432B000675713 /* ExerciseModel.swift */,
+				CF6658892F0431D000675713 /* TrainingModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CF00F4682BA61F3F0012826C /* Subviews */ = {
+		CF66587D2F0430BB00675713 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CFAA18B82BA5EC1A00235E1A /* SingleValueEditView.swift */,
-				CF00F4692BA6278A0012826C /* BGImageView.swift */,
-				CF1740AB2BA769BB00C7AC5C /* PersonalRecordView.swift */,
-				CFE695172BC129EE002ECD65 /* ExerciseView.swift */,
-				CF5E9AEB2BC1694A008490BC /* PullToActionView.swift */,
-				CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */,
+				CF6658732F0430BB00675713 /* MartianGrotesk-StdBd.ttf */,
+				CF6658742F0430BB00675713 /* MartianGrotesk-StdLt.ttf */,
+				CF6658752F0430BB00675713 /* MartianGrotesk-StdMd.ttf */,
+				CF6658762F0430BB00675713 /* MartianGrotesk-StdRg.ttf */,
+				CF6658772F0430BB00675713 /* MartianMono-Regular.ttf */,
+				CF6658782F0430BB00675713 /* MartianMono-Bold.ttf */,
+				CF6658792F0430BB00675713 /* MartianGrotesk-CnBd.ttf */,
+				CF66587A2F0430BB00675713 /* MartianGrotesk-CnLt.ttf */,
+				CF66587B2F0430BB00675713 /* MartianGrotesk-CnMd.ttf */,
+				CF66587C2F0430BB00675713 /* MartianGrotesk-CnRg.ttf */,
 			);
-			path = Subviews;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CF9240E72B9DD2F7008A968D = {
@@ -116,14 +106,13 @@
 		CF9240F22B9DD2F7008A968D /* GustavWeights */ = {
 			isa = PBXGroup;
 			children = (
+				CF66588F2F0437C100675713 /* AddExerciseSheet.swift */,
+				CF66588D2F04343000675713 /* Theme.swift */,
+				CF66587D2F0430BB00675713 /* Fonts */,
 				CF00F4672BA61F2D0012826C /* Models */,
-				CF00F4682BA61F3F0012826C /* Subviews */,
-				CF00F4662BA61D040012826C /* Sheets */,
 				CFE8593F2BA239E6001C3A09 /* Info.plist */,
 				CF9240F32B9DD2F7008A968D /* GustavWeightsApp.swift */,
 				CF9240F52B9DD2F7008A968D /* ContentView.swift */,
-				CFE8593B2BA239A5001C3A09 /* MartianMono-Bold.ttf */,
-				CFE8593C2BA239A5001C3A09 /* MartianMono-Regular.ttf */,
 				CF9240F72B9DD2F8008A968D /* Assets.xcassets */,
 				CF9240F92B9DD2F8008A968D /* Preview Content */,
 			);
@@ -196,10 +185,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFE8593D2BA239A5001C3A09 /* MartianMono-Bold.ttf in Resources */,
 				CF9240FB2B9DD2F8008A968D /* Preview Assets.xcassets in Resources */,
+				CF66587E2F0430BB00675713 /* MartianGrotesk-CnBd.ttf in Resources */,
+				CF66587F2F0430BB00675713 /* MartianGrotesk-StdBd.ttf in Resources */,
+				CF6658802F0430BB00675713 /* MartianGrotesk-StdLt.ttf in Resources */,
+				CF6658812F0430BB00675713 /* MartianGrotesk-CnLt.ttf in Resources */,
+				CF6658822F0430BB00675713 /* MartianGrotesk-StdRg.ttf in Resources */,
+				CF6658832F0430BB00675713 /* MartianGrotesk-CnMd.ttf in Resources */,
+				CF6658842F0430BB00675713 /* MartianGrotesk-CnRg.ttf in Resources */,
+				CF6658852F0430BB00675713 /* MartianMono-Regular.ttf in Resources */,
+				CF6658862F0430BB00675713 /* MartianMono-Bold.ttf in Resources */,
+				CF6658872F0430BB00675713 /* MartianGrotesk-StdMd.ttf in Resources */,
 				CF9240F82B9DD2F8008A968D /* Assets.xcassets in Resources */,
-				CFE8593E2BA239A5001C3A09 /* MartianMono-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,21 +207,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFAA18AF2BA5CA0600235E1A /* AddWeightSheet.swift in Sources */,
-				CF1740AC2BA769BB00C7AC5C /* PersonalRecordView.swift in Sources */,
-				CF5E9AEC2BC1694A008490BC /* PullToActionView.swift in Sources */,
 				CF9240F62B9DD2F7008A968D /* ContentView.swift in Sources */,
-				CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */,
-				CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */,
-				CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */,
-				CFAA18B12BA5CEEC00235E1A /* EditExerciseNameSheet.swift in Sources */,
-				CF98C4B52BDEB2D700FA4E18 /* ChartView.swift in Sources */,
+				CF6658902F0437D900675713 /* AddExerciseSheet.swift in Sources */,
+				CF66588A2F0431D500675713 /* TrainingModel.swift in Sources */,
+				CF66588E2F04343200675713 /* Theme.swift in Sources */,
 				CF9240F42B9DD2F7008A968D /* GustavWeightsApp.swift in Sources */,
-				CF00F46A2BA6278A0012826C /* BGImageView.swift in Sources */,
-				CFAA18B32BA5CF6100235E1A /* EditWeightSheet.swift in Sources */,
-				CFAA18B92BA5EC1A00235E1A /* SingleValueEditView.swift in Sources */,
-				CFE695182BC129EE002ECD65 /* ExerciseView.swift in Sources */,
-				CF9241022B9DD44C008A968D /* Weight.swift in Sources */,
+				CF66588C2F0432B300675713 /* ExerciseModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
