@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF002AC32FD6A08C000A1844 /* GustavUI in Frameworks */ = {isa = PBXBuildFile; productRef = CF002AC22FD6A08C000A1844 /* GustavUI */; };
+		CF002AC52FD6A08C000A1844 /* GustavUIAnimations in Frameworks */ = {isa = PBXBuildFile; productRef = CF002AC42FD6A08C000A1844 /* GustavUIAnimations */; };
+		CF002AC72FD6A08C000A1844 /* GustavUICore in Frameworks */ = {isa = PBXBuildFile; productRef = CF002AC62FD6A08C000A1844 /* GustavUICore */; };
 		CF00F46A2BA6278A0012826C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00F4692BA6278A0012826C /* BGImageView.swift */; };
 		CF1740AC2BA769BB00C7AC5C /* PersonalRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1740AB2BA769BB00C7AC5C /* PersonalRecordView.swift */; };
 		CF5E9AEC2BC1694A008490BC /* PullToActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5E9AEB2BC1694A008490BC /* PullToActionView.swift */; };
@@ -57,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF002AC32FD6A08C000A1844 /* GustavUI in Frameworks */,
+				CF002AC52FD6A08C000A1844 /* GustavUIAnimations in Frameworks */,
+				CF002AC72FD6A08C000A1844 /* GustavUICore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +188,9 @@
 				Base,
 			);
 			mainGroup = CF9240E72B9DD2F7008A968D;
+			packageReferences = (
+				CF002AC12FD6A08C000A1844 /* XCLocalSwiftPackageReference "../GustavUI" */,
+			);
 			productRefGroup = CF9240F12B9DD2F7008A968D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -444,6 +453,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		CF002AC12FD6A08C000A1844 /* XCLocalSwiftPackageReference "../GustavUI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../GustavUI;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF002AC22FD6A08C000A1844 /* GustavUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GustavUI;
+		};
+		CF002AC42FD6A08C000A1844 /* GustavUIAnimations */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GustavUIAnimations;
+		};
+		CF002AC62FD6A08C000A1844 /* GustavUICore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GustavUICore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CF9240E82B9DD2F7008A968D /* Project object */;
 }
