@@ -23,14 +23,14 @@ xcuserdata/
 *.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 
 # Swift Package Manager
+# Package.resolved must stay in git: Xcode Cloud resolves packages
+# only from the committed file.
 .build/
 .swiftpm/
 Packages/
-Package.resolved
 
 # CocoaPods
 Pods/
-*.xcworkspace
 
 # Carthage
 Carthage/Build/
