@@ -16,7 +16,7 @@
 		CF9240FB2B9DD2F8008A968D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF9240FA2B9DD2F8008A968D /* Preview Assets.xcassets */; };
 		CF9241022B9DD44C008A968D /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9241012B9DD44C008A968D /* Weight.swift */; };
 		CF98C4B52BDEB2D700FA4E18 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */; };
-		CFAA18AF2BA5CA0600235E1A /* AddWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */; };
+		CFAA18AF2BA5CA0600235E1A /* AddWeightAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */; };
 		CFAA18B32BA5CF6100235E1A /* EditWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */; };
 		CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */; };
 		CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */; };
@@ -37,7 +37,7 @@
 		CF9240FA2B9DD2F8008A968D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF9241012B9DD44C008A968D /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
-		CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightSheet.swift; sourceTree = "<group>"; };
+		CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightAlert.swift; sourceTree = "<group>"; };
 		CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeightSheet.swift; sourceTree = "<group>"; };
 		CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSheet.swift; sourceTree = "<group>"; };
 		CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseSheet.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 				CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */,
 				CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */,
 				CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */,
-				CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */,
+				CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFAA18AF2BA5CA0600235E1A /* AddWeightSheet.swift in Sources */,
+				CFAA18AF2BA5CA0600235E1A /* AddWeightAlert.swift in Sources */,
 				CF1740AC2BA769BB00C7AC5C /* PersonalRecordView.swift in Sources */,
 				CF9240F62B9DD2F7008A968D /* ContentView.swift in Sources */,
 				CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */,

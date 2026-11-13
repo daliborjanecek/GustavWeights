@@ -16,8 +16,6 @@ struct SingleValueEditView: View {
     
     var textFieldPlaceholder: String
     var buttonLabelText: String
-    /// Optional second part of the button label, e.g. the exercise name.
-    var buttonDescription: String?
     var isButtonEnabled: Bool
     
     @Binding var number: Double?
@@ -26,10 +24,9 @@ struct SingleValueEditView: View {
     
     var buttonFunction: () -> ()
     
-    init(textFieldPlaceholder: String, buttonLabelText: String, buttonDescription: String? = nil, number: Binding<Double?>?, isButtonEnabled: Bool = true, focusedField: FocusedField? = nil, buttonFunction: @escaping () -> Void) {
+    init(textFieldPlaceholder: String, buttonLabelText: String, number: Binding<Double?>?, isButtonEnabled: Bool = true, focusedField: FocusedField? = nil, buttonFunction: @escaping () -> Void) {
         self.textFieldPlaceholder = textFieldPlaceholder
         self.buttonLabelText = buttonLabelText
-        self.buttonDescription = buttonDescription
         self.isButtonEnabled = isButtonEnabled
         self._number = number ?? Binding.constant(nil)
         self._text = Binding.constant(nil)
@@ -37,10 +34,9 @@ struct SingleValueEditView: View {
         self.buttonFunction = buttonFunction
     }
     
-    init(textFieldPlaceholder: String, buttonLabelText: String, buttonDescription: String? = nil, text: Binding<String>, isButtonEnabled: Bool = true, focusedField: FocusedField? = nil, buttonFunction: @escaping () -> Void) {
+    init(textFieldPlaceholder: String, buttonLabelText: String, text: Binding<String>, isButtonEnabled: Bool = true, focusedField: FocusedField? = nil, buttonFunction: @escaping () -> Void) {
         self.textFieldPlaceholder = textFieldPlaceholder
         self.buttonLabelText = buttonLabelText
-        self.buttonDescription = buttonDescription
         self.isButtonEnabled = isButtonEnabled
         self._number = Binding.constant(nil)
         self._text = Binding(text)
@@ -81,7 +77,6 @@ struct SingleValueEditView: View {
                 Spacer()
                 // Same pill as the main screen buttons (GustavTimer style).
                 ControlButton(label: LocalizedStringKey(buttonLabelText.uppercased()),
-                              description: buttonDescription,
                               action: buttonFunction)
                     .opacity(isButtonEnabled ? 1.0 : 0.4)
                     .disabled(!isButtonEnabled)

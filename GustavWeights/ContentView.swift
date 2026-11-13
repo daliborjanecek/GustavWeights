@@ -13,7 +13,7 @@ struct ContentView: View {
     
     /// Maximum number of exercises, the app is meant for your main lifts.
     static let maxExercises = 12
-    /// Height of the add exercise / add weight sheets: input field plus a control button.
+    /// Height of the add exercise sheet: input field plus a control button.
     static let inputSheetHeight: CGFloat = 220
     
     // SwiftData
@@ -109,8 +109,7 @@ struct ContentView: View {
                         }
                         .presentationDetents([.height(Self.inputSheetHeight)])
                     })
-                    .sheet(item: $exerciseToAddWeight, content: { exercise in
-                        AddWeightSheet(exercise: exercise).presentationDetents([.height(Self.inputSheetHeight)]) })
+                    .addWeightAlert(for: $exerciseToAddWeight)
                     .sheet(item: $exerciseToDetail, content: { exercise in DetailSheet(exercise: exercise) })
                     
                     if !exercises.isEmpty {
@@ -127,7 +126,7 @@ struct ContentView: View {
     /// and a narrow secondary one.
     var buttonBar: some View {
         HStack(spacing: 16) {
-            ControlButton(label: "ADD WEIGHT", description: currentExercise?.name) {
+            ControlButton(label: "ADD WEIGHT") {
                 exerciseToAddWeight = currentExercise
             }
             ControlButton(systemImage: "chart.bar.xaxis",
