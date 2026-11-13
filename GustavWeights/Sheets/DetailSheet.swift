@@ -30,11 +30,12 @@ struct DetailSheet: View {
                         }
                     }
                 }
-                .onDelete { IndexSet in
-                    for index in IndexSet {
-                        var sortedWeights = exercise.weights.sorted { $0.date > $1.date }
-                        sortedWeights.remove(at: index)
-                        exercise.weights = sortedWeights
+                .onDelete { indexSet in
+                    let sortedWeights = exercise.weights.sorted { $0.date > $1.date }
+                    let weightsToDelete = indexSet.map { sortedWeights[$0] }
+                    for weight in weightsToDelete {
+                        exercise.weights.removeAll { $0 == weight }
+                        context.delete(weight)
                     }
                 }
                 Section {
