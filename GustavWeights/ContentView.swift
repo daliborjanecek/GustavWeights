@@ -17,7 +17,7 @@ struct ContentView: View {
     static let inputSheetHeight: CGFloat = 220
     
     // SwiftData
-    @Query(sort: \Exercise.name) var exercises: [Exercise]
+    @Query(sort: Exercise.sortOrder) var exercises: [Exercise]
     @Environment(\.modelContext) var context
     
     @State private var isShowingAddExercise = false

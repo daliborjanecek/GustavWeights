@@ -56,6 +56,11 @@ struct DetailSheet: View {
                     } label: {
                         Text("Rename")
                     }
+                    NavigationLink {
+                        ReorderExercisesView()
+                    } label: {
+                        Text("Reorder exercises")
+                    }
                     Button(action: {
                         showingDialog = true
                     }, label: {

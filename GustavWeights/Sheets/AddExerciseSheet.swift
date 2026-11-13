@@ -12,6 +12,8 @@ struct AddExerciseSheet: View {
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) private var dismiss
     
+    @Query(sort: Exercise.sortOrder) private var exercises: [Exercise]
+    
     @State private var name: String = ""
     
     /// Called with the newly created exercise, so the caller can scroll to it.
@@ -24,7 +26,9 @@ struct AddExerciseSheet: View {
             text: $name,
             isButtonEnabled: !trimmedName.isEmpty) {
                 guard !trimmedName.isEmpty else { return }
-                let exercise = Exercise(name: trimmedName)
+                // A new exercise goes to the end of the list.
+                let nextOrder = (exercises.map(\.order).max() ?? -1) + 1
+                let exercise = Exercise(name: trimmedName, order: nextOrder)
                 context.insert(exercise)
                 onAdd(exercise)
                 dismiss()
