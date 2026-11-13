@@ -13,15 +13,12 @@ struct ContentView: View {
     
     /// Maximum number of exercises, the app is meant for your main lifts.
     static let maxExercises = 12
-    /// Height of the add exercise sheet: input field plus a control button.
-    static let inputSheetHeight: CGFloat = 220
     
     // SwiftData
     @Query(sort: Exercise.sortOrder) var exercises: [Exercise]
     @Environment(\.modelContext) var context
     
     @State private var isShowingAddExercise = false
-    @State private var isShowingAddWeight = false
     @State private var exerciseToAddWeight: Exercise?
     @State private var exerciseToDetail: Exercise?
     @State private var scrolledExercise: Exercise?
@@ -112,13 +109,7 @@ struct ContentView: View {
                         isActive
                     }
                     
-                    // SHEETS
-                    .sheet(isPresented: $isShowingAddExercise, content: {
-                        AddExerciseSheet { exercise in
-                            exerciseToScrollTo = exercise
-                        }
-                        .presentationDetents([.height(Self.inputSheetHeight)])
-                    })
+                    // ALERTS AND SHEETS
                     .addWeightAlert(for: $exerciseToAddWeight)
                     .sheet(item: $exerciseToDetail, content: { exercise in DetailSheet(exercise: exercise) })
                     
@@ -139,6 +130,11 @@ struct ContentView: View {
                 }
             }
             .animation(.easeInOut(duration: 0.2), value: weightPickTranslation == nil)
+            // Kept on a different view than the add weight alert,
+            // two alerts on one view don't work reliably.
+            .addExerciseAlert(isPresented: $isShowingAddExercise) { exercise in
+                exerciseToScrollTo = exercise
+            }
             .font(.bodyNumber)
             .ignoresSafeArea(edges: .bottom)
         })

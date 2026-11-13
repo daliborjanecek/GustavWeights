@@ -19,8 +19,7 @@
 		CFAA18AF2BA5CA0600235E1A /* AddWeightAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */; };
 		CFAA18B32BA5CF6100235E1A /* EditWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */; };
 		CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */; };
-		CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */; };
-		CFAA18B92BA5EC1A00235E1A /* SingleValueEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B82BA5EC1A00235E1A /* SingleValueEditView.swift */; };
+		CFAA18B72BA5CFFC00235E1A /* AddExerciseAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */; };
 		CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */; };
 		CFE695182BC129EE002ECD65 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE695172BC129EE002ECD65 /* ExerciseView.swift */; };
 		CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E12F00000000000001 /* WeightsDesign.swift */; };
@@ -42,8 +41,7 @@
 		CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightAlert.swift; sourceTree = "<group>"; };
 		CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeightSheet.swift; sourceTree = "<group>"; };
 		CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSheet.swift; sourceTree = "<group>"; };
-		CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseSheet.swift; sourceTree = "<group>"; };
-		CFAA18B82BA5EC1A00235E1A /* SingleValueEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleValueEditView.swift; sourceTree = "<group>"; };
+		CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseAlert.swift; sourceTree = "<group>"; };
 		CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		CFE695172BC129EE002ECD65 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		CFE8593F2BA239E6001C3A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -69,7 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */,
-				CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */,
+				CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */,
 				CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */,
 				CF0A11E52F00000000000001 /* ReorderExercisesView.swift */,
 				CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */,
@@ -89,7 +87,6 @@
 		CF00F4682BA61F3F0012826C /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				CFAA18B82BA5EC1A00235E1A /* SingleValueEditView.swift */,
 				CF00F4692BA6278A0012826C /* BGImageView.swift */,
 				CF1740AB2BA769BB00C7AC5C /* PersonalRecordView.swift */,
 				CFE695172BC129EE002ECD65 /* ExerciseView.swift */,
@@ -221,12 +218,11 @@
 				CF9240F62B9DD2F7008A968D /* ContentView.swift in Sources */,
 				CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */,
 				CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */,
-				CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */,
+				CFAA18B72BA5CFFC00235E1A /* AddExerciseAlert.swift in Sources */,
 				CF98C4B52BDEB2D700FA4E18 /* ChartView.swift in Sources */,
 				CF9240F42B9DD2F7008A968D /* GustavWeightsApp.swift in Sources */,
 				CF00F46A2BA6278A0012826C /* BGImageView.swift in Sources */,
 				CFAA18B32BA5CF6100235E1A /* EditWeightSheet.swift in Sources */,
-				CFAA18B92BA5EC1A00235E1A /* SingleValueEditView.swift in Sources */,
 				CFE695182BC129EE002ECD65 /* ExerciseView.swift in Sources */,
 				CF9241022B9DD44C008A968D /* Weight.swift in Sources */,
 				CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */,
