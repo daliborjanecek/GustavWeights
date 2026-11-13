@@ -40,15 +40,7 @@ struct ContentView: View {
                 BGImageView(image: Image("Boxer"))
                 
                 VStack {
-                    HStack(spacing: 5) {
-                        ForEach(exercises) {exercise in
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill( exercise == scrolledExercise ? Color.gustavVolt : Color.gustavNeutral )
-                                .frame(height: 5)
-                                
-                        }
-                    }
-                    .padding()
+                    pageIndicator
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 0) {
@@ -120,6 +112,37 @@ struct ContentView: View {
             .font(.bodyNumber)
             .ignoresSafeArea(edges: .bottom)
         })
+    }
+    
+    /// One segment per exercise at the top of the screen. Tapping a segment
+    /// scrolls to that exercise.
+    var pageIndicator: some View {
+        HStack(spacing: 5) {
+            ForEach(exercises) { exercise in
+                let isSelected = exercise == currentExercise
+                Button {
+                    withAnimation {
+                        scrolledExercise = exercise
+                    }
+                } label: {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(isSelected ? Color.gustavVolt : Color.gustavNeutral)
+                        .frame(height: 5)
+                        // The bar is only 5 pt tall, the vertical padding
+                        // gives it a comfortable tap target.
+                        .padding(.vertical, 16)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(exercise.name)
+                .accessibilityAddTraits(isSelected ? .isSelected : [])
+            }
+        }
+        .padding(.horizontal)
+        // Tick when switching exercises (by tap or swipe), not on launch.
+        .sensoryFeedback(.selection, trigger: scrolledExercise) { oldValue, newValue in
+            oldValue != nil && newValue != nil
+        }
     }
     
     /// Same layout as the GustavTimer controls: a wide primary pill
