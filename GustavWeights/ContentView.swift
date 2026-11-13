@@ -11,7 +11,6 @@ import SwiftData
 
 struct ContentView: View {
     
-    let buttonHeight:CGFloat = 80.0
     /// Maximum number of exercises, the app is meant for your main lifts.
     static let maxExercises = 12
     
@@ -122,28 +121,25 @@ struct ContentView: View {
         })
     }
     
+    /// Same layout as the GustavTimer controls: a wide primary pill
+    /// and a narrow secondary one.
     var buttonBar: some View {
-        HStack(spacing: 0) {
-            Button(action: {
+        HStack(spacing: 16) {
+            ControlButton(label: "ADD WEIGHT", description: currentExercise?.name) {
                 exerciseToAddWeight = currentExercise
-            }) {
-                Color.gustavPink
-                    .overlay {
-                        Text("ADD WEIGHT")
-                    }
-                    .frame(height: buttonHeight)
             }
-            Button(action: {
+            ControlButton(systemImage: "chart.bar.xaxis",
+                          accessibilityLabel: "Detail",
+                          color: .gustavNeutral) {
                 exerciseToDetail = currentExercise
-            }, label: {
-                Color.gustavNeutral
-                    .overlay {
-                        Text("DETAIL")
-                    }
-                    .frame(height: buttonHeight)
-            })
+            }
+            .frame(width: 100)
         }
-        .foregroundStyle(Color.gustavVolt)
+        .animation(.easeInOut, value: currentExercise)
+        .frame(maxWidth: .infinity)
+        .padding()
+        .padding(.bottom, 5)
+        .padding(.horizontal, 5)
     }
     
     /// The exercise the buttons act on. Falls back to the first one
