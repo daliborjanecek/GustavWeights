@@ -43,7 +43,7 @@ struct ControlButton: View {
         Button(action: action) {
             switch content {
             case .text(let label, let description):
-                textLabel(label, description: description)
+                ControlButtonLabel(label: label, description: description, color: color)
             case .icon(let systemImage, let accessibilityLabel):
                 iconLabel(systemImage)
                     .accessibilityLabel(accessibilityLabel)
@@ -57,7 +57,24 @@ struct ControlButton: View {
         color == .gustavVolt ? .gustavNeutral : .gustavVolt
     }
 
-    private func textLabel(_ label: LocalizedStringKey, description: String?) -> some View {
+    private func iconLabel(_ systemImage: String) -> some View {
+        Image(systemName: systemImage)
+            .font(.system(size: 28, weight: .medium))
+            .foregroundStyle(foreground)
+            .frame(height: GustavLayout.controlHeight)
+            .frame(maxWidth: .infinity)
+            .controlSurface(color)
+    }
+}
+
+/// Look of a text ControlButton without the Button itself, for controls
+/// that need their own gestures (e.g. ADD WEIGHT with tap and hold).
+struct ControlButtonLabel: View {
+    let label: LocalizedStringKey
+    var description: String? = nil
+    var color: Color = .gustavVolt
+
+    var body: some View {
         HStack {
             Text(label)
                 .font(.buttonLabel)
@@ -71,19 +88,10 @@ struct ControlButton: View {
         .lineLimit(1)
         .minimumScaleFactor(0.6)
         .padding(.horizontal, 24)
-        .foregroundStyle(foreground)
+        .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
         .frame(height: GustavLayout.controlHeight)
         .frame(maxWidth: .infinity)
         .controlSurface(color)
-    }
-
-    private func iconLabel(_ systemImage: String) -> some View {
-        Image(systemName: systemImage)
-            .font(.system(size: 28, weight: .medium))
-            .foregroundStyle(foreground)
-            .frame(height: GustavLayout.controlHeight)
-            .frame(maxWidth: .infinity)
-            .controlSurface(color)
     }
 }
 

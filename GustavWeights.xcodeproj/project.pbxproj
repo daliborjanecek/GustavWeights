@@ -26,6 +26,7 @@
 		CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E12F00000000000001 /* WeightsDesign.swift */; };
 		CF0A11E42F00000000000001 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E32F00000000000001 /* ControlButton.swift */; };
 		CF0A11E62F00000000000001 /* ReorderExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E52F00000000000001 /* ReorderExercisesView.swift */; };
+		CF0A11E82F00000000000001 /* WeightPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E72F00000000000001 /* WeightPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		CF0A11E12F00000000000001 /* WeightsDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightsDesign.swift; sourceTree = "<group>"; };
 		CF0A11E32F00000000000001 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
 		CF0A11E52F00000000000001 /* ReorderExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderExercisesView.swift; sourceTree = "<group>"; };
+		CF0A11E72F00000000000001 /* WeightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				CFE695172BC129EE002ECD65 /* ExerciseView.swift */,
 				CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */,
 				CF0A11E32F00000000000001 /* ControlButton.swift */,
+				CF0A11E72F00000000000001 /* WeightPicker.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */,
 				CF0A11E42F00000000000001 /* ControlButton.swift in Sources */,
 				CF0A11E62F00000000000001 /* ReorderExercisesView.swift in Sources */,
+				CF0A11E82F00000000000001 /* WeightPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

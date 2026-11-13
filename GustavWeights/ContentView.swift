@@ -37,6 +37,8 @@ struct ContentView: View {
     /// Page indicator bar in global coordinates, used to map a finger
     /// held anywhere on the screen to an exercise.
     @State private var indicatorFrame: CGRect = .zero
+    /// Finger movement since holding ADD WEIGHT started, nil when not picking.
+    @GestureState private var weightPickTranslation: CGSize?
     
     @AppStorage("loadFirstExercise") private var loadFirstExercise = true
     
@@ -124,7 +126,19 @@ struct ContentView: View {
                         buttonBar
                     }
                 }
+                
+                if let translation = weightPickTranslation,
+                   let exercise = currentExercise,
+                   let scale = WeightPickerScale(exercise: exercise) {
+                    WeightPickerOverlay(exerciseName: exercise.name,
+                                        scale: scale,
+                                        translation: translation)
+                        // The finger is tracked by the button's gesture, not by the overlay.
+                        .allowsHitTesting(false)
+                        .transition(.opacity)
+                }
             }
+            .animation(.easeInOut(duration: 0.2), value: weightPickTranslation == nil)
             .font(.bodyNumber)
             .ignoresSafeArea(edges: .bottom)
         })
@@ -239,9 +253,7 @@ struct ContentView: View {
     /// and a narrow secondary one.
     var buttonBar: some View {
         HStack(spacing: 16) {
-            ControlButton(label: "ADD WEIGHT") {
-                exerciseToAddWeight = currentExercise
-            }
+            addWeightButton
             ControlButton(systemImage: "chart.bar.xaxis",
                           accessibilityLabel: "Detail",
                           color: .gustavNeutral) {
@@ -254,6 +266,51 @@ struct ContentView: View {
         .padding()
         .padding(.bottom, 5)
         .padding(.horizontal, 5)
+    }
+    
+    /// Tap: alert with a number field. Hold and slide up/down: pick the weight
+    /// from a range around the PR, release to save (see WeightPicker.swift).
+    var addWeightButton: some View {
+        ControlButtonLabel(label: "ADD WEIGHT")
+            .contentShape(Rectangle())
+            .gesture(
+                holdToPickWeightGesture.exclusively(
+                    before: TapGesture().onEnded {
+                        exerciseToAddWeight = currentExercise
+                    }
+                )
+            )
+            .sensoryFeedback(.impact(weight: .medium), trigger: weightPickTranslation != nil) { _, isPicking in
+                isPicking
+            }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Add weight")
+            .accessibilityAddTraits(.isButton)
+            .accessibilityAction {
+                exerciseToAddWeight = currentExercise
+            }
+    }
+    
+    private var holdToPickWeightGesture: some Gesture {
+        LongPressGesture(minimumDuration: 0.3)
+            .sequenced(before: DragGesture(minimumDistance: 0))
+            .updating($weightPickTranslation) { value, translation, _ in
+                if case .second(true, let drag) = value {
+                    translation = drag?.translation ?? .zero
+                }
+            }
+            .onEnded { value in
+                guard case .second(true, let drag) = value,
+                      let exercise = currentExercise else { return }
+                // Without records there is no PR to pick around, use the alert instead.
+                guard let scale = WeightPickerScale(exercise: exercise) else {
+                    exerciseToAddWeight = exercise
+                    return
+                }
+                let translation = drag?.translation ?? .zero
+                guard !WeightPickerScale.isCancelled(translation) else { return }
+                exercise.weights.append(Weight(value: scale.value(for: translation)))
+            }
     }
     
     /// The exercise the buttons act on. Falls back to the first one
