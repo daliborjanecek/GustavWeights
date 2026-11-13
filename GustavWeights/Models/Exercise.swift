@@ -20,3 +20,15 @@ class Exercise {
         self.weights = []
     }
 }
+
+extension Exercise {
+    /// The heaviest weight ever logged, or 0 when there is no record yet.
+    var personalRecord: Double {
+        weights.map(\.value).max() ?? 0
+    }
+    
+    /// The most recently logged record.
+    var lastWeight: Weight? {
+        weights.max { $0.date < $1.date }
+    }
+}

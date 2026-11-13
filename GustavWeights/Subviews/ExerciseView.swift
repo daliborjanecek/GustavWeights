@@ -33,6 +33,10 @@ struct ExerciseView: View {
             PersonalRecordView(exercise: exercise)
                 .font(Font.custom("MartianMono-Bold", size: 30))
             
+            LastLiftView(exercise: exercise)
+                .font(Font.custom("MartianMono-Regular", size: 15))
+                .opacity(0.8)
+            
         }
         .padding(30)
         .frame(width: geometry.size.width * (lastExercise ? 1.0 : 0.85))

@@ -10,21 +10,38 @@ import SwiftUI
 struct PersonalRecordView: View {
     let exercise: Exercise
     
-    var weight: Double { get { return getPersonalRecord(weights: exercise.weights) } }
-    
     var body: some View {
-        Text("PR:\(weight.formattedString(maxDecimalPlaces: 2))KG")
+        Text("PR:\(exercise.personalRecord.formattedString(maxDecimalPlaces: 2))KG")
             .frame(maxWidth: .infinity, alignment: .leading)
     }
+}
 
-    func getPersonalRecord(weights: [Weight]) -> Double {
-        var pr: Double = 0
-        for weight in weights {
-            if weight.value > pr {
-                pr = weight.value
-            }
+/// Shows the last logged weight and how long ago it was,
+/// so you know what to put on the bar today.
+struct LastLiftView: View {
+    let exercise: Exercise
+    
+    var body: some View {
+        if let last = exercise.lastWeight {
+            Text("LAST:\(last.value.formattedString(maxDecimalPlaces: 2))KG · \(relativeDay(last.date).uppercased())")
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        return pr
+    }
+    
+    /// "today", "yesterday", "3 days ago" – counted in calendar days,
+    /// because the time of day doesn't matter for a training log.
+    private func relativeDay(_ date: Date) -> String {
+        let calendar = Calendar.current
+        let days = calendar.dateComponents(
+            [.day],
+            from: calendar.startOfDay(for: date),
+            to: calendar.startOfDay(for: .now)
+        ).day ?? 0
+        let formatter = RelativeDateTimeFormatter()
+        formatter.dateTimeStyle = .named
+        return formatter.localizedString(from: DateComponents(day: -days))
     }
 }
 
