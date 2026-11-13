@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUICore
 
 struct SingleValueEditView: View {
     
@@ -76,10 +77,10 @@ struct SingleValueEditView: View {
                 Spacer()
                 Button(action: buttonFunction,
                        label: {
-                    Color("StartColor")
+                    Color.gustavVolt
                         .overlay {
                             Text(buttonLabelText)
-                                .foregroundStyle(Color("ResetColor"))
+                                .foregroundStyle(Color.gustavNeutral)
                         }
                         .frame(height: 80)
                         .opacity(isButtonEnabled ? 1.0 : 0.4)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUICore
 
 struct ExerciseView: View {
     var exercise: Exercise
@@ -35,7 +36,7 @@ struct ExerciseView: View {
                     .font(Font.custom("MartianMono-Bold", size: 15))
                     .padding(.horizontal, 10)
                     .padding(.vertical, 4)
-                    .background(Color("StopColor"), in: Capsule())
+                    .background(Color.gustavPink, in: Capsule())
                     .transition(.scale.combined(with: .opacity))
             }
             
@@ -50,7 +51,7 @@ struct ExerciseView: View {
         }
         .padding(30)
         .frame(width: geometry.size.width * (lastExercise ? 1.0 : 0.85))
-        .foregroundColor(Color("StartColor"))
+        .foregroundColor(Color.gustavVolt)
         .overlay { if lastExercise && canAddExercise { plusToAction } }
         // Haptic confirmation whenever a new weight is logged.
         .sensoryFeedback(trigger: exercise.weights.count) { oldCount, newCount in
@@ -83,7 +84,7 @@ struct ExerciseView: View {
                     Spacer()
                     Image(systemName: "plus.circle.fill")
                         .resizable()
-                        .foregroundStyle(Color("StartColor"))
+                        .foregroundStyle(Color.gustavVolt)
                         .frame(width: 40 * (plusSize + 1), height: 40 * (plusSize + 1))
                         .offset(x: (-position) + 30 + (position * 1.5) - position)
                         .onChange(of: geo.frame(in: .global)) { oldValue, newValue in

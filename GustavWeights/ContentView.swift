@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUICore
 import SwiftData
 
 struct ContentView: View {
@@ -41,7 +42,7 @@ struct ContentView: View {
                     HStack(spacing: 5) {
                         ForEach(exercises) {exercise in
                             RoundedRectangle(cornerRadius: 10)
-                                .fill( exercise == scrolledExercise ? Color("StartColor") : Color("ResetColor") )
+                                .fill( exercise == scrolledExercise ? Color.gustavVolt : Color.gustavNeutral )
                                 .frame(height: 5)
                                 
                         }
@@ -80,7 +81,7 @@ struct ContentView: View {
                                 
                             }
                             .padding()
-                            .foregroundStyle(Color("StartColor"))
+                            .foregroundStyle(Color.gustavVolt)
                         }
                     }
                     .task {
@@ -126,7 +127,7 @@ struct ContentView: View {
             Button(action: {
                 exerciseToAddWeight = currentExercise
             }) {
-                Color("StopColor")
+                Color.gustavPink
                     .overlay {
                         Text("ADD WEIGHT")
                     }
@@ -135,14 +136,14 @@ struct ContentView: View {
             Button(action: {
                 exerciseToDetail = currentExercise
             }, label: {
-                Color("ResetColor")
+                Color.gustavNeutral
                     .overlay {
                         Text("DETAIL")
                     }
                     .frame(height: buttonHeight)
             })
         }
-        .foregroundStyle(Color("StartColor"))
+        .foregroundStyle(Color.gustavVolt)
     }
     
     /// The exercise the buttons act on. Falls back to the first one

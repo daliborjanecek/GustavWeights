@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUICore
 import SwiftData
 import Charts
 
@@ -30,7 +31,7 @@ struct DetailSheet: View {
                             Spacer()
                             if weight.value == exercise.personalRecord {
                                 Image(systemName: "trophy.fill")
-                                    .foregroundStyle(Color("StopColor"))
+                                    .foregroundStyle(Color.gustavPink)
                                     .accessibilityLabel("Personal record")
                             }
                             Text("\(weight.value.formattedString(maxDecimalPlaces: 2)) kg")
