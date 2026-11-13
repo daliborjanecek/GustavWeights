@@ -13,6 +13,8 @@ struct ContentView: View {
     
     /// Maximum number of exercises, the app is meant for your main lifts.
     static let maxExercises = 12
+    /// Height of the add exercise / add weight sheets: input field plus a control button.
+    static let inputSheetHeight: CGFloat = 220
     
     // SwiftData
     @Query(sort: \Exercise.name) var exercises: [Exercise]
@@ -105,10 +107,10 @@ struct ContentView: View {
                         AddExerciseSheet { exercise in
                             exerciseToScrollTo = exercise
                         }
-                        .presentationDetents([.height(150)])
+                        .presentationDetents([.height(Self.inputSheetHeight)])
                     })
                     .sheet(item: $exerciseToAddWeight, content: { exercise in
-                        AddWeightSheet(exercise: exercise).presentationDetents([.height(150)]) })
+                        AddWeightSheet(exercise: exercise).presentationDetents([.height(Self.inputSheetHeight)]) })
                     .sheet(item: $exerciseToDetail, content: { exercise in DetailSheet(exercise: exercise) })
                     
                     if !exercises.isEmpty {
