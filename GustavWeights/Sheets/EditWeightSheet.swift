@@ -10,7 +10,6 @@ import SwiftUI
 struct EditWeightSheet: View {
     @Bindable var weight: Weight
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) var context
     
     var body: some View {
         NavigationStack {

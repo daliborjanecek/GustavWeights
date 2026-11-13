@@ -86,14 +86,6 @@ struct SingleValueEditView: View {
                 })
                 .disabled(!isButtonEnabled)
             }
-            .overlay {
-                GeometryReader { geometry in
-                    Color.clear
-                        .onAppear {
-                            print(geometry.frame(in: .global).height)
-                        }
-                }
-            }
         }
     }
 

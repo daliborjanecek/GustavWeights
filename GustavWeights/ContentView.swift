@@ -11,6 +11,8 @@ import SwiftData
 struct ContentView: View {
     
     let buttonHeight:CGFloat = 80.0
+    /// Maximum number of exercises, the app is meant for your main lifts.
+    static let maxExercises = 12
     
     // SwiftData
     @Query(sort: \Exercise.name) var exercises: [Exercise]
@@ -20,7 +22,6 @@ struct ContentView: View {
     @State private var isShowingAddWeight = false
     @State private var exerciseToAddWeight: Exercise?
     @State private var exerciseToDetail: Exercise?
-    @State private var weightToEdit: Weight?
     @State private var scrolledExercise: Exercise?
     /// Exercise that was just created and should be scrolled to
     /// as soon as it shows up in the query results.
@@ -50,7 +51,10 @@ struct ContentView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 0) {
                             ForEach(exercises, id: \.self) {exercise in
-                                ExerciseView(exercise: exercise, geometry: geometry, lastExercise: (exercise == exercises.last)) {
+                                ExerciseView(exercise: exercise,
+                                             geometry: geometry,
+                                             lastExercise: (exercise == exercises.last),
+                                             canAddExercise: exercises.count < Self.maxExercises) {
                                     if !isShowingAddExercise {
                                         isShowingAddExercise.toggle()
                                     }
@@ -105,7 +109,6 @@ struct ContentView: View {
                     })
                     .sheet(item: $exerciseToAddWeight, content: { exercise in
                         AddWeightSheet(exercise: exercise).presentationDetents([.height(150)]) })
-                    .sheet(item: $weightToEdit, content: { weight in EditWeightSheet(weight: weight) })
                     .sheet(item: $exerciseToDetail, content: { exercise in DetailSheet(exercise: exercise) })
                     
                     if !exercises.isEmpty {

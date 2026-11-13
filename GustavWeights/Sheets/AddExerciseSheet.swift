@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddExerciseSheet: View {
     @Environment(\.modelContext) var context

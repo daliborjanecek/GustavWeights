@@ -6,15 +6,14 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ExerciseView: View {
     var exercise: Exercise
     var geometry: GeometryProxy
     var lastExercise: Bool = false
+    /// False once the maximum number of exercises is reached.
+    var canAddExercise: Bool = true
     var pullToAction: (()->())?
-    
-    @Query(sort: \Exercise.name) var exercises: [Exercise]
 
     @State private var plusSize = 0.05
     @State private var position = 0.0
@@ -52,7 +51,7 @@ struct ExerciseView: View {
         .padding(30)
         .frame(width: geometry.size.width * (lastExercise ? 1.0 : 0.85))
         .foregroundColor(Color("StartColor"))
-        .overlay { if lastExercise && !isExerciseFull() { plusToAction } }
+        .overlay { if lastExercise && canAddExercise { plusToAction } }
         // Haptic confirmation whenever a new weight is logged.
         .sensoryFeedback(trigger: exercise.weights.count) { oldCount, newCount in
             newCount > oldCount ? .success : nil
@@ -108,10 +107,6 @@ struct ExerciseView: View {
                 }
             }
         }
-    }
-    
-    func isExerciseFull() -> Bool {
-        return exercises.count >= 12
     }
     
     func getTitleOffset(length: Int) -> CGSize {

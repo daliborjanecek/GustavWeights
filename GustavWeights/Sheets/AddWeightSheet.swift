@@ -11,7 +11,6 @@ struct AddWeightSheet: View {
     
     @Bindable var exercise: Exercise
     
-    @Environment(\.modelContext) var context
     @Environment(\.dismiss) private var dismiss
     
     @State private var value: Double?
