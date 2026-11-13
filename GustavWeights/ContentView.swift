@@ -28,6 +28,8 @@ struct ContentView: View {
     /// Exercise that was just created and should be scrolled to
     /// as soon as it shows up in the query results.
     @State private var exerciseToScrollTo: Exercise?
+    /// True while the finger is on the page indicator.
+    @State private var isScrubbingIndicator = false
     
     @AppStorage("loadFirstExercise") private var loadFirstExercise = true
     
@@ -114,34 +116,80 @@ struct ContentView: View {
         })
     }
     
-    /// One segment per exercise at the top of the screen. Tapping a segment
-    /// scrolls to that exercise.
+    /// One segment per exercise at the top of the screen.
+    /// Touch it and slide the finger along it to scrub through exercises:
+    /// the page switches while the finger is still down. A tap jumps directly.
     var pageIndicator: some View {
         HStack(spacing: 5) {
             ForEach(exercises) { exercise in
-                let isSelected = exercise == currentExercise
-                Button {
-                    withAnimation {
-                        scrolledExercise = exercise
-                    }
-                } label: {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(isSelected ? Color.gustavVolt : Color.gustavNeutral)
-                        .frame(height: 5)
-                        // The bar is only 5 pt tall, the vertical padding
-                        // gives it a comfortable tap target.
-                        .padding(.vertical, 16)
-                        .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel(exercise.name)
-                .accessibilityAddTraits(isSelected ? .isSelected : [])
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(exercise == currentExercise ? Color.gustavVolt : Color.gustavNeutral)
+                    // Bars grow while scrubbing, so it's clear the finger controls them.
+                    .frame(height: isScrubbingIndicator ? 10 : 5)
+            }
+        }
+        // Fixed height, so the content below doesn't move while the bars grow.
+        .frame(height: 10)
+        // 37 pt tall touch area in total, the bars themselves are tiny.
+        .padding(.vertical, 13.5)
+        .overlay {
+            GeometryReader { geometry in
+                Color.clear
+                    .contentShape(Rectangle())
+                    .gesture(scrubGesture(width: geometry.size.width))
             }
         }
         .padding(.horizontal)
-        // Tick when switching exercises (by tap or swipe), not on launch.
+        .animation(.snappy(duration: 0.2), value: isScrubbingIndicator)
+        // Tick on every exercise change (scrubbing, tap or swipe), not on launch.
         .sensoryFeedback(.selection, trigger: scrolledExercise) { oldValue, newValue in
             oldValue != nil && newValue != nil
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Exercises")
+        .accessibilityValue(currentExercise?.name ?? "")
+        .accessibilityHint("Swipe up or down to switch the exercise.")
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment: selectNeighbourExercise(offset: 1)
+            case .decrement: selectNeighbourExercise(offset: -1)
+            @unknown default: break
+            }
+        }
+    }
+    
+    /// Starts reacting on touch down (minimumDistance 0), so both a tap
+    /// and a slide along the bar switch the exercise immediately.
+    private func scrubGesture(width: CGFloat) -> some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                isScrubbingIndicator = true
+                selectExercise(atIndicatorX: value.location.x, width: width)
+            }
+            .onEnded { value in
+                selectExercise(atIndicatorX: value.location.x, width: width)
+                isScrubbingIndicator = false
+            }
+    }
+    
+    /// Maps a horizontal position on the indicator to an exercise and scrolls to it.
+    private func selectExercise(atIndicatorX x: CGFloat, width: CGFloat) {
+        guard !exercises.isEmpty, width > 0 else { return }
+        let index = Int(x / width * CGFloat(exercises.count))
+        let exercise = exercises[min(max(index, 0), exercises.count - 1)]
+        guard exercise != scrolledExercise else { return }
+        // A short animation keeps up with a fast finger.
+        withAnimation(.snappy(duration: 0.15)) {
+            scrolledExercise = exercise
+        }
+    }
+    
+    private func selectNeighbourExercise(offset: Int) {
+        guard let current = currentExercise,
+              let index = exercises.firstIndex(of: current),
+              exercises.indices.contains(index + offset) else { return }
+        withAnimation {
+            scrolledExercise = exercises[index + offset]
         }
     }
     
