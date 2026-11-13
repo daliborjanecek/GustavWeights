@@ -1,0 +1,9 @@
+{
+  "id" : "e8941d92-afc6-4251-98aa-7dc1235afae5",
+  "targets" : [
+    {
+      "id" : "68d0d40c-077b-47e2-85cd-02e3e15dab3c",
+      "name" : "GustavWeights"
+    }
+  ]
+}
