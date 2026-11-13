@@ -22,7 +22,9 @@ struct ContentView: View {
     @State private var exerciseToDetail: Exercise?
     @State private var weightToEdit: Weight?
     @State private var scrolledExercise: Exercise?
-    @State private var scrolledToEnd: Bool = false
+    /// Exercise that was just created and should be scrolled to
+    /// as soon as it shows up in the query results.
+    @State private var exerciseToScrollTo: Exercise?
     
     @AppStorage("loadFirstExercise") private var loadFirstExercise = true
     
@@ -88,18 +90,19 @@ struct ContentView: View {
                             loadFirstExercise = false
                         }
                     }
-                    .onAppear(perform: {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            if !exercises.isEmpty && !loadFirstExercise {
-                                scrolledExercise = exercises[0]
-                            }
-                        }
-                    })
+                    .onChange(of: exercises, initial: true) {
+                        syncScrolledExercise()
+                    }
                     .scrollTargetBehavior(.viewAligned)
                     .scrollPosition(id: $scrolledExercise)
                     
                     // SHEETS
-                    .sheet(isPresented: $isShowingAddExercise, content: { AddExerciseSheet().presentationDetents([.height(150)]) })
+                    .sheet(isPresented: $isShowingAddExercise, content: {
+                        AddExerciseSheet { exercise in
+                            exerciseToScrollTo = exercise
+                        }
+                        .presentationDetents([.height(150)])
+                    })
                     .sheet(item: $exerciseToAddWeight, content: { exercise in
                         AddWeightSheet(exercise: exercise).presentationDetents([.height(150)]) })
                     .sheet(item: $weightToEdit, content: { weight in EditWeightSheet(weight: weight) })
@@ -118,7 +121,7 @@ struct ContentView: View {
     var buttonBar: some View {
         HStack(spacing: 0) {
             Button(action: {
-                exerciseToAddWeight = scrolledExercise
+                exerciseToAddWeight = currentExercise
             }) {
                 Color("StopColor")
                     .overlay {
@@ -127,7 +130,7 @@ struct ContentView: View {
                     .frame(height: buttonHeight)
             }
             Button(action: {
-                exerciseToDetail = scrolledExercise
+                exerciseToDetail = currentExercise
             }, label: {
                 Color("ResetColor")
                     .overlay {
@@ -137,5 +140,28 @@ struct ContentView: View {
             })
         }
         .foregroundStyle(Color("StartColor"))
+    }
+    
+    /// The exercise the buttons act on. Falls back to the first one
+    /// in case the scroll position has not been reported yet.
+    private var currentExercise: Exercise? {
+        scrolledExercise ?? exercises.first
+    }
+    
+    /// Keeps `scrolledExercise` pointing at an existing exercise:
+    /// selects the first one on launch, jumps to a newly added one
+    /// and moves away from an exercise that was just deleted.
+    private func syncScrolledExercise() {
+        if let newExercise = exerciseToScrollTo, exercises.contains(newExercise) {
+            exerciseToScrollTo = nil
+            withAnimation {
+                scrolledExercise = newExercise
+            }
+            return
+        }
+        if let current = scrolledExercise, exercises.contains(current) {
+            return
+        }
+        scrolledExercise = exercises.first
     }
 }
