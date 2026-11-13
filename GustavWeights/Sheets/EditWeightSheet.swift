@@ -11,13 +11,21 @@ struct EditWeightSheet: View {
     @Bindable var weight: Weight
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) var context
-        
-    @State private var value: Double = 0
+    
     var body: some View {
         NavigationStack {
                 Form {
-                    TextField("Weight", value: $weight.value, format: .number)
-                        .keyboardType(.decimalPad)
+                    HStack {
+                        TextField("Weight", value: $weight.value, format: .number)
+                            .keyboardType(.decimalPad)
+                        Text("kg")
+                            .foregroundStyle(.secondary)
+                    }
+                    // Lets you fix the date of an entry or log a session afterwards.
+                    DatePicker("Date",
+                               selection: $weight.date,
+                               in: ...Date.now,
+                               displayedComponents: [.date, .hourAndMinute])
                 }
             
             .navigationTitle("Edit weight")

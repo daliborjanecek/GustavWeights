@@ -27,7 +27,12 @@ struct DetailSheet: View {
                         HStack {
                             Text(weight.date.formatted(.dateTime.day().month().year()))
                             Spacer()
-                            Text(weight.value, format: .number)
+                            if weight.value == exercise.personalRecord {
+                                Image(systemName: "trophy.fill")
+                                    .foregroundStyle(Color("StopColor"))
+                                    .accessibilityLabel("Personal record")
+                            }
+                            Text("\(weight.value.formattedString(maxDecimalPlaces: 2)) kg")
                         }
                     }
                 }
