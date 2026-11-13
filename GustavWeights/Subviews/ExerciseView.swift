@@ -44,10 +44,6 @@ struct ExerciseView: View {
                 .font(.weightsValue)
                 .scaleEffect(isCelebratingPR ? 1.1 : 1.0, anchor: .leading)
             
-            LastLiftView(exercise: exercise)
-                .font(.bodyNumber)
-                .opacity(0.8)
-            
         }
         .padding(30)
         .frame(width: geometry.size.width * (lastExercise ? 1.0 : 0.85))
