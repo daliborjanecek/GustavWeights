@@ -50,7 +50,7 @@ struct SingleValueEditView: View {
                 if text == nil {
                     TextField(textFieldPlaceholder.uppercased(), value: $number, format: .number)
                         .keyboardType(.decimalPad)
-                        .font(Font.custom("MartianMono-Bold", size: 30))
+                        .font(.weightsValue)
                         .focused($focusedField, equals: .weight)
                         .multilineTextAlignment(.center)
                         .onAppear() {
@@ -61,7 +61,7 @@ struct SingleValueEditView: View {
                         .keyboardType(.default)
                         .autocorrectionDisabled(true)
                         .textCase(.uppercase)
-                        .font(Font.custom("MartianMono-Bold", size: 30))
+                        .font(.weightsValue)
                         .focused($focusedField, equals: .weight)
                         .multilineTextAlignment(.center)
                         .submitLabel(.done)

@@ -1,5 +1,5 @@
 //
-//  ExerciseToInspect.swift
+//  DetailSheet.swift
 //  GustavWeights
 //
 //  Created by Dalibor Janeček on 16.03.2024.
@@ -21,49 +21,52 @@ struct DetailSheet: View {
     var body: some View {
         NavigationStack {
             List {
-                ChartView(exercise: exercise)
-                ForEach(exercise.weights.sorted { $0.date > $1.date }, id: \.self) { weight in
-                    NavigationLink {
-                        EditWeightSheet(weight: weight)
-                    } label: {
-                        HStack {
-                            Text(weight.date.formatted(.dateTime.day().month().year()))
-                            Spacer()
-                            if weight.value == exercise.personalRecord {
-                                Image(systemName: "trophy.fill")
-                                    .foregroundStyle(Color.gustavPink)
-                                    .accessibilityLabel("Personal record")
+                Section {
+                    ChartView(exercise: exercise)
+                }
+                
+                if !exercise.weights.isEmpty {
+                    Section {
+                        ForEach(sortedWeights) { weight in
+                            NavigationLink {
+                                EditWeightSheet(weight: weight)
+                            } label: {
+                                historyRow(weight)
                             }
-                            Text("\(weight.value.formattedString(maxDecimalPlaces: 2)) kg")
                         }
+                        .onDelete { indexSet in
+                            let weightsToDelete = indexSet.map { sortedWeights[$0] }
+                            for weight in weightsToDelete {
+                                exercise.weights.removeAll { $0 == weight }
+                                context.delete(weight)
+                            }
+                        }
+                    } header: {
+                        sectionHeader("HISTORY")
+                    } footer: {
+                        Text("Tap an entry to edit it, swipe left to delete it.")
+                            .font(.sectionFooter)
+                            .foregroundStyle(Color.gustavNeutral)
                     }
                 }
-                .onDelete { indexSet in
-                    let sortedWeights = exercise.weights.sorted { $0.date > $1.date }
-                    let weightsToDelete = indexSet.map { sortedWeights[$0] }
-                    for weight in weightsToDelete {
-                        exercise.weights.removeAll { $0 == weight }
-                        context.delete(weight)
-                    }
-                }
+                
                 Section {
                     NavigationLink {
                         renameExercise
                     } label: {
                         Text("Rename")
                     }
-
-                }
-                Section {
                     Button(action: {
                         showingDialog = true
                     }, label: {
-                        Text("Delete").foregroundStyle(.red)
+                        Text("Delete exercise").foregroundStyle(.red)
                     })
+                } header: {
+                    sectionHeader("EXERCISE")
                 }
-                .navigationTitle("\(exercise.name)")
-                .navigationBarTitleDisplayMode(.inline)
             }
+            .navigationTitle(exercise.name.uppercased())
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Done") {
@@ -71,7 +74,8 @@ struct DetailSheet: View {
                     }
                 }
             })
-            .font(Font.custom("MartianMono-Regular", size: 15))
+            .font(.gustavBody)
+            .tint(Color.gustavNavigationItemsColor)
             .confirmationDialog("Do you really want to delete the exercise?",
                                 isPresented: $showingDialog,
                                 titleVisibility: .visible) {
@@ -82,6 +86,35 @@ struct DetailSheet: View {
                 
             }
         }
+    }
+    
+    /// Newest entries first.
+    private var sortedWeights: [Weight] {
+        exercise.weights.sorted { $0.date > $1.date }
+    }
+    
+    private func historyRow(_ weight: Weight) -> some View {
+        HStack {
+            Text(weight.date.formatted(.dateTime.day().month().year()))
+            Spacer()
+            if weight.value == exercise.personalRecord {
+                Text("PR")
+                    .font(.sectionHeader)
+                    .foregroundStyle(Color.gustavWhite)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 2)
+                    .background(Color.gustavPink, in: Capsule())
+                    .accessibilityLabel("Personal record")
+            }
+            Text("\(weight.value.formattedString(maxDecimalPlaces: 2)) kg")
+                .font(.bodyNumber)
+        }
+    }
+    
+    private func sectionHeader(_ title: LocalizedStringKey) -> some View {
+        Text(title)
+            .font(.sectionHeader)
+            .foregroundStyle(Color.gustavNeutral)
     }
     
     var renameExercise: some View {

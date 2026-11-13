@@ -24,7 +24,7 @@ struct ExerciseView: View {
         VStack(alignment: .leading) {
             Text("\(exercise.name)")
                 .offset(getTitleOffset(length: exercise.name.count))
-                .font(Font.custom("MartianMono-Bold", size: 500))
+                .font(.exerciseTitle)
                 .minimumScaleFactor(0.01)
                 .textCase(.uppercase)
                 .frame(height: geometry.size.height/3, alignment: .bottom)
@@ -33,7 +33,7 @@ struct ExerciseView: View {
             
             if isCelebratingPR {
                 Text("NEW PR!")
-                    .font(Font.custom("MartianMono-Bold", size: 15))
+                    .font(.weightsBadge)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 4)
                     .background(Color.gustavPink, in: Capsule())
@@ -41,11 +41,11 @@ struct ExerciseView: View {
             }
             
             PersonalRecordView(exercise: exercise)
-                .font(Font.custom("MartianMono-Bold", size: 30))
+                .font(.weightsValue)
                 .scaleEffect(isCelebratingPR ? 1.1 : 1.0, anchor: .leading)
             
             LastLiftView(exercise: exercise)
-                .font(Font.custom("MartianMono-Regular", size: 15))
+                .font(.bodyNumber)
                 .opacity(0.8)
             
         }

@@ -6,36 +6,37 @@
 //
 
 import SwiftUI
+import GustavUICore
 
 struct EditWeightSheet: View {
     @Bindable var weight: Weight
     @Environment(\.dismiss) private var dismiss
     
+    // Pushed from DetailSheet's NavigationStack, so it has no stack of its own.
     var body: some View {
-        NavigationStack {
-                Form {
-                    HStack {
-                        TextField("Weight", value: $weight.value, format: .number)
-                            .keyboardType(.decimalPad)
-                        Text("kg")
-                            .foregroundStyle(.secondary)
-                    }
-                    // Lets you fix the date of an entry or log a session afterwards.
-                    DatePicker("Date",
-                               selection: $weight.date,
-                               in: ...Date.now,
-                               displayedComponents: [.date, .hourAndMinute])
-                }
-            
-            .navigationTitle("Edit weight")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar(content: {
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Done") {
-                        dismiss()
-                    }
-                }
-            })
+        Form {
+            HStack {
+                TextField("Weight", value: $weight.value, format: .number)
+                    .keyboardType(.decimalPad)
+                    .font(.bodyNumber)
+                Text("kg")
+                    .foregroundStyle(Color.gustavNeutral)
+            }
+            // Lets you fix the date of an entry or log a session afterwards.
+            DatePicker("Date",
+                       selection: $weight.date,
+                       in: ...Date.now,
+                       displayedComponents: [.date, .hourAndMinute])
         }
+        .font(.gustavBody)
+        .navigationTitle("Edit weight")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(content: {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button("Done") {
+                    dismiss()
+                }
+            }
+        })
     }
 }

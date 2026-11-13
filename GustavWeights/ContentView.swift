@@ -68,7 +68,7 @@ struct ContentView: View {
                         if exercises.isEmpty {
                             VStack {
                                 Text("ADD EXERCISE")
-                                    .font(Font.custom("MartianMono-Bold", size: 22))
+                                    .font(.weightsEmptyTitle)
                                     .padding()
                                 Text("to record your lifted weight, add exercise")
                                     .fixedSize(horizontal: false, vertical: true)
@@ -117,7 +117,7 @@ struct ContentView: View {
                     }
                 }
             }
-            .font(Font.custom("MartianMono-Regular", size: 15))
+            .font(.bodyNumber)
             .ignoresSafeArea(edges: .bottom)
         })
     }
