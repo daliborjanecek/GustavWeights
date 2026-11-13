@@ -10,21 +10,9 @@ import SwiftUI
 struct PersonalRecordView: View {
     let exercise: Exercise
     
-    var weight: Double { get { return getPersonalRecord(weights: exercise.weights) } }
-    
     var body: some View {
-        Text("PR:\(weight.formattedString(maxDecimalPlaces: 2))KG")
+        Text("PR:\(exercise.personalRecord.formattedString(maxDecimalPlaces: 2))KG")
             .frame(maxWidth: .infinity, alignment: .leading)
-    }
-
-    func getPersonalRecord(weights: [Weight]) -> Double {
-        var pr: Double = 0
-        for weight in weights {
-            if weight.value > pr {
-                pr = weight.value
-            }
-        }
-        return pr
     }
 }
 

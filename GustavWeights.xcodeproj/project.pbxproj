@@ -7,34 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF002AC32FD6A08C000A1844 /* GustavUI in Frameworks */ = {isa = PBXBuildFile; productRef = CF002AC22FD6A08C000A1844 /* GustavUI */; };
-		CF002AC52FD6A08C000A1844 /* GustavUIAnimations in Frameworks */ = {isa = PBXBuildFile; productRef = CF002AC42FD6A08C000A1844 /* GustavUIAnimations */; };
 		CF002AC72FD6A08C000A1844 /* GustavUICore in Frameworks */ = {isa = PBXBuildFile; productRef = CF002AC62FD6A08C000A1844 /* GustavUICore */; };
 		CF00F46A2BA6278A0012826C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00F4692BA6278A0012826C /* BGImageView.swift */; };
 		CF1740AC2BA769BB00C7AC5C /* PersonalRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1740AB2BA769BB00C7AC5C /* PersonalRecordView.swift */; };
-		CF5E9AEC2BC1694A008490BC /* PullToActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5E9AEB2BC1694A008490BC /* PullToActionView.swift */; };
 		CF9240F42B9DD2F7008A968D /* GustavWeightsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9240F32B9DD2F7008A968D /* GustavWeightsApp.swift */; };
 		CF9240F62B9DD2F7008A968D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9240F52B9DD2F7008A968D /* ContentView.swift */; };
 		CF9240F82B9DD2F8008A968D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF9240F72B9DD2F8008A968D /* Assets.xcassets */; };
 		CF9240FB2B9DD2F8008A968D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF9240FA2B9DD2F8008A968D /* Preview Assets.xcassets */; };
 		CF9241022B9DD44C008A968D /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9241012B9DD44C008A968D /* Weight.swift */; };
 		CF98C4B52BDEB2D700FA4E18 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */; };
-		CFAA18AF2BA5CA0600235E1A /* AddWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */; };
-		CFAA18B12BA5CEEC00235E1A /* EditExerciseNameSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B02BA5CEEC00235E1A /* EditExerciseNameSheet.swift */; };
+		CFAA18AF2BA5CA0600235E1A /* AddWeightAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */; };
 		CFAA18B32BA5CF6100235E1A /* EditWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */; };
 		CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */; };
 		CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */; };
 		CFAA18B92BA5EC1A00235E1A /* SingleValueEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B82BA5EC1A00235E1A /* SingleValueEditView.swift */; };
 		CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */; };
 		CFE695182BC129EE002ECD65 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE695172BC129EE002ECD65 /* ExerciseView.swift */; };
-		CFE8593D2BA239A5001C3A09 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE8593B2BA239A5001C3A09 /* MartianMono-Bold.ttf */; };
-		CFE8593E2BA239A5001C3A09 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFE8593C2BA239A5001C3A09 /* MartianMono-Regular.ttf */; };
+		CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E12F00000000000001 /* WeightsDesign.swift */; };
+		CF0A11E42F00000000000001 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E32F00000000000001 /* ControlButton.swift */; };
+		CF0A11E62F00000000000001 /* ReorderExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E52F00000000000001 /* ReorderExercisesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CF00F4692BA6278A0012826C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
 		CF1740AB2BA769BB00C7AC5C /* PersonalRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalRecordView.swift; sourceTree = "<group>"; };
-		CF5E9AEB2BC1694A008490BC /* PullToActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToActionView.swift; sourceTree = "<group>"; };
 		CF9240F02B9DD2F7008A968D /* GustavWeights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GustavWeights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9240F32B9DD2F7008A968D /* GustavWeightsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavWeightsApp.swift; sourceTree = "<group>"; };
 		CF9240F52B9DD2F7008A968D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,17 +38,17 @@
 		CF9240FA2B9DD2F8008A968D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF9241012B9DD44C008A968D /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
 		CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
-		CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightSheet.swift; sourceTree = "<group>"; };
-		CFAA18B02BA5CEEC00235E1A /* EditExerciseNameSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseNameSheet.swift; sourceTree = "<group>"; };
+		CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightAlert.swift; sourceTree = "<group>"; };
 		CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeightSheet.swift; sourceTree = "<group>"; };
 		CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSheet.swift; sourceTree = "<group>"; };
 		CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseSheet.swift; sourceTree = "<group>"; };
 		CFAA18B82BA5EC1A00235E1A /* SingleValueEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleValueEditView.swift; sourceTree = "<group>"; };
 		CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		CFE695172BC129EE002ECD65 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
-		CFE8593B2BA239A5001C3A09 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
-		CFE8593C2BA239A5001C3A09 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
 		CFE8593F2BA239E6001C3A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF0A11E12F00000000000001 /* WeightsDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightsDesign.swift; sourceTree = "<group>"; };
+		CF0A11E32F00000000000001 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
+		CF0A11E52F00000000000001 /* ReorderExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderExercisesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF002AC32FD6A08C000A1844 /* GustavUI in Frameworks */,
-				CF002AC52FD6A08C000A1844 /* GustavUIAnimations in Frameworks */,
 				CF002AC72FD6A08C000A1844 /* GustavUICore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,8 +69,8 @@
 				CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */,
 				CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */,
 				CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */,
-				CFAA18B02BA5CEEC00235E1A /* EditExerciseNameSheet.swift */,
-				CFAA18AE2BA5CA0600235E1A /* AddWeightSheet.swift */,
+				CF0A11E52F00000000000001 /* ReorderExercisesView.swift */,
+				CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -97,8 +91,8 @@
 				CF00F4692BA6278A0012826C /* BGImageView.swift */,
 				CF1740AB2BA769BB00C7AC5C /* PersonalRecordView.swift */,
 				CFE695172BC129EE002ECD65 /* ExerciseView.swift */,
-				CF5E9AEB2BC1694A008490BC /* PullToActionView.swift */,
 				CF98C4B42BDEB2D700FA4E18 /* ChartView.swift */,
+				CF0A11E32F00000000000001 /* ControlButton.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -128,8 +122,7 @@
 				CFE8593F2BA239E6001C3A09 /* Info.plist */,
 				CF9240F32B9DD2F7008A968D /* GustavWeightsApp.swift */,
 				CF9240F52B9DD2F7008A968D /* ContentView.swift */,
-				CFE8593B2BA239A5001C3A09 /* MartianMono-Bold.ttf */,
-				CFE8593C2BA239A5001C3A09 /* MartianMono-Regular.ttf */,
+				CF0A11E12F00000000000001 /* WeightsDesign.swift */,
 				CF9240F72B9DD2F8008A968D /* Assets.xcassets */,
 				CF9240F92B9DD2F8008A968D /* Preview Content */,
 			);
@@ -160,6 +153,9 @@
 			dependencies = (
 			);
 			name = GustavWeights;
+			packageProductDependencies = (
+				CF002AC62FD6A08C000A1844 /* GustavUICore */,
+			);
 			productName = GustavWeights;
 			productReference = CF9240F02B9DD2F7008A968D /* GustavWeights.app */;
 			productType = "com.apple.product-type.application";
@@ -189,7 +185,7 @@
 			);
 			mainGroup = CF9240E72B9DD2F7008A968D;
 			packageReferences = (
-				CF002AC12FD6A08C000A1844 /* XCLocalSwiftPackageReference "../GustavUI" */,
+				CF002AC12FD6A08C000A1844 /* XCRemoteSwiftPackageReference "GustavUI" */,
 			);
 			productRefGroup = CF9240F12B9DD2F7008A968D /* Products */;
 			projectDirPath = "";
@@ -205,10 +201,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFE8593D2BA239A5001C3A09 /* MartianMono-Bold.ttf in Resources */,
 				CF9240FB2B9DD2F8008A968D /* Preview Assets.xcassets in Resources */,
 				CF9240F82B9DD2F8008A968D /* Assets.xcassets in Resources */,
-				CFE8593E2BA239A5001C3A09 /* MartianMono-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,14 +213,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFAA18AF2BA5CA0600235E1A /* AddWeightSheet.swift in Sources */,
+				CFAA18AF2BA5CA0600235E1A /* AddWeightAlert.swift in Sources */,
 				CF1740AC2BA769BB00C7AC5C /* PersonalRecordView.swift in Sources */,
-				CF5E9AEC2BC1694A008490BC /* PullToActionView.swift in Sources */,
 				CF9240F62B9DD2F7008A968D /* ContentView.swift in Sources */,
 				CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */,
 				CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */,
 				CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */,
-				CFAA18B12BA5CEEC00235E1A /* EditExerciseNameSheet.swift in Sources */,
 				CF98C4B52BDEB2D700FA4E18 /* ChartView.swift in Sources */,
 				CF9240F42B9DD2F7008A968D /* GustavWeightsApp.swift in Sources */,
 				CF00F46A2BA6278A0012826C /* BGImageView.swift in Sources */,
@@ -234,6 +226,9 @@
 				CFAA18B92BA5EC1A00235E1A /* SingleValueEditView.swift in Sources */,
 				CFE695182BC129EE002ECD65 /* ExerciseView.swift in Sources */,
 				CF9241022B9DD44C008A968D /* Weight.swift in Sources */,
+				CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */,
+				CF0A11E42F00000000000001 /* ControlButton.swift in Sources */,
+				CF0A11E62F00000000000001 /* ReorderExercisesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,24 +449,21 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		CF002AC12FD6A08C000A1844 /* XCLocalSwiftPackageReference "../GustavUI" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../GustavUI;
+/* Begin XCRemoteSwiftPackageReference section */
+		CF002AC12FD6A08C000A1844 /* XCRemoteSwiftPackageReference "GustavUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daliborjanecek/GustavUI.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CF002AC22FD6A08C000A1844 /* GustavUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GustavUI;
-		};
-		CF002AC42FD6A08C000A1844 /* GustavUIAnimations */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GustavUIAnimations;
-		};
 		CF002AC62FD6A08C000A1844 /* GustavUICore */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = CF002AC12FD6A08C000A1844 /* XCRemoteSwiftPackageReference "GustavUI" */;
 			productName = GustavUICore;
 		};
 /* End XCSwiftPackageProductDependency section */

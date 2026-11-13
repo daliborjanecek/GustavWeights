@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUICore
 
 struct SingleValueEditView: View {
     
@@ -15,6 +16,7 @@ struct SingleValueEditView: View {
     
     var textFieldPlaceholder: String
     var buttonLabelText: String
+    var isButtonEnabled: Bool
     
     @Binding var number: Double?
     @Binding var text: String?
@@ -22,18 +24,20 @@ struct SingleValueEditView: View {
     
     var buttonFunction: () -> ()
     
-    init(textFieldPlaceholder: String, buttonLabelText: String, number: Binding<Double?>?, focusedField: FocusedField? = nil, buttonFunction: @escaping () -> Void) {
+    init(textFieldPlaceholder: String, buttonLabelText: String, number: Binding<Double?>?, isButtonEnabled: Bool = true, focusedField: FocusedField? = nil, buttonFunction: @escaping () -> Void) {
         self.textFieldPlaceholder = textFieldPlaceholder
         self.buttonLabelText = buttonLabelText
+        self.isButtonEnabled = isButtonEnabled
         self._number = number ?? Binding.constant(nil)
         self._text = Binding.constant(nil)
         self._focusedField = FocusState()
         self.buttonFunction = buttonFunction
     }
     
-    init(textFieldPlaceholder: String, buttonLabelText: String, text: Binding<String>, focusedField: FocusedField? = nil, buttonFunction: @escaping () -> Void) {
+    init(textFieldPlaceholder: String, buttonLabelText: String, text: Binding<String>, isButtonEnabled: Bool = true, focusedField: FocusedField? = nil, buttonFunction: @escaping () -> Void) {
         self.textFieldPlaceholder = textFieldPlaceholder
         self.buttonLabelText = buttonLabelText
+        self.isButtonEnabled = isButtonEnabled
         self._number = Binding.constant(nil)
         self._text = Binding(text)
         self._focusedField = FocusState()
@@ -46,7 +50,7 @@ struct SingleValueEditView: View {
                 if text == nil {
                     TextField(textFieldPlaceholder.uppercased(), value: $number, format: .number)
                         .keyboardType(.decimalPad)
-                        .font(Font.custom("MartianMono-Bold", size: 30))
+                        .font(.weightsValue)
                         .focused($focusedField, equals: .weight)
                         .multilineTextAlignment(.center)
                         .onAppear() {
@@ -57,31 +61,29 @@ struct SingleValueEditView: View {
                         .keyboardType(.default)
                         .autocorrectionDisabled(true)
                         .textCase(.uppercase)
-                        .font(Font.custom("MartianMono-Bold", size: 30))
+                        .font(.weightsValue)
                         .focused($focusedField, equals: .weight)
                         .multilineTextAlignment(.center)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            if isButtonEnabled {
+                                buttonFunction()
+                            }
+                        }
                         .onAppear {
                             focusedField = .weight
                         }
                 }
                 Spacer()
-                Button(action: buttonFunction,
-                       label: {
-                    Color("StartColor")
-                        .overlay {
-                            Text(buttonLabelText)
-                                .foregroundStyle(Color("ResetColor"))
-                        }
-                        .frame(height: 80)
-                })
-            }
-            .overlay {
-                GeometryReader { geometry in
-                    Color.clear
-                        .onAppear {
-                            print(geometry.frame(in: .global).height)
-                        }
-                }
+                // Same pill as the main screen buttons (GustavTimer style).
+                ControlButton(label: LocalizedStringKey(buttonLabelText.uppercased()),
+                              action: buttonFunction)
+                    .opacity(isButtonEnabled ? 1.0 : 0.4)
+                    .disabled(!isButtonEnabled)
+                    .animation(.easeInOut(duration: 0.2), value: isButtonEnabled)
+                    .padding()
+                    .padding(.bottom, 5)
+                    .padding(.horizontal, 5)
             }
         }
     }

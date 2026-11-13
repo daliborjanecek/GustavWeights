@@ -6,29 +6,37 @@
 //
 
 import SwiftUI
+import GustavUICore
 
 struct EditWeightSheet: View {
     @Bindable var weight: Weight
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) var context
-        
-    @State private var value: Double = 0
+    
+    // Pushed from DetailSheet's NavigationStack, so it has no stack of its own.
     var body: some View {
-        NavigationStack {
-                Form {
-                    TextField("Váha", value: $weight.value, format: .number)
-                        .keyboardType(.decimalPad)
-                }
-            
-            .navigationTitle("Edit weight")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar(content: {
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Save") {
-                        dismiss()
-                    }
-                }
-            })
+        Form {
+            HStack {
+                TextField("Weight", value: $weight.value, format: .number)
+                    .keyboardType(.decimalPad)
+                    .font(.bodyNumber)
+                Text("kg")
+                    .foregroundStyle(Color.gustavNeutral)
+            }
+            // Lets you fix the date of an entry or log a session afterwards.
+            DatePicker("Date",
+                       selection: $weight.date,
+                       in: ...Date.now,
+                       displayedComponents: [.date, .hourAndMinute])
         }
+        .font(.gustavBody)
+        .navigationTitle("Edit weight")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(content: {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button("Done") {
+                    dismiss()
+                }
+            }
+        })
     }
 }

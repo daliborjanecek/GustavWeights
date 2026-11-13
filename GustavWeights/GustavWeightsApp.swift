@@ -7,9 +7,15 @@
 
 import SwiftUI
 import SwiftData
+import GustavUICore
 
 @main
 struct GustavWeightsApp: App {
+    
+    init() {
+        // Martian fonts and Gustav colors come from the shared GustavUI package.
+        GustavDesign.registerFonts()
+    }
     
     let container: ModelContainer = {
         let schema = Schema([Exercise.self])

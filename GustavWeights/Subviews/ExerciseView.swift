@@ -6,38 +6,70 @@
 //
 
 import SwiftUI
-import SwiftData
+import GustavUICore
 
 struct ExerciseView: View {
     var exercise: Exercise
     var geometry: GeometryProxy
     var lastExercise: Bool = false
+    /// False once the maximum number of exercises is reached.
+    var canAddExercise: Bool = true
     var pullToAction: (()->())?
-    
-    @Query(sort: \Exercise.name) var exercises: [Exercise]
 
     @State private var plusSize = 0.05
     @State private var position = 0.0
+    @State private var isCelebratingPR = false
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("\(exercise.name)")
                 .offset(getTitleOffset(length: exercise.name.count))
-                .font(Font.custom("MartianMono-Bold", size: 500))
+                .font(.exerciseTitle)
                 .minimumScaleFactor(0.01)
                 .textCase(.uppercase)
                 .frame(height: geometry.size.height/3, alignment: .bottom)
             
             Spacer()
             
+            if isCelebratingPR {
+                Text("NEW PR!")
+                    .font(.weightsBadge)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(Color.gustavPink, in: Capsule())
+                    .transition(.scale.combined(with: .opacity))
+            }
+            
             PersonalRecordView(exercise: exercise)
-                .font(Font.custom("MartianMono-Bold", size: 30))
+                .font(.weightsValue)
+                .scaleEffect(isCelebratingPR ? 1.1 : 1.0, anchor: .leading)
             
         }
         .padding(30)
         .frame(width: geometry.size.width * (lastExercise ? 1.0 : 0.85))
-        .foregroundColor(Color("StartColor"))
-        .overlay { if lastExercise && !isExerciseFull() { plusToAction } }
+        .foregroundColor(Color.gustavVolt)
+        .overlay { if lastExercise && canAddExercise { plusToAction } }
+        // Haptic confirmation whenever a new weight is logged.
+        .sensoryFeedback(trigger: exercise.weights.count) { oldCount, newCount in
+            newCount > oldCount ? .success : nil
+        }
+        .onChange(of: exercise.personalRecord) { oldPR, newPR in
+            // Celebrate only beating an existing record, not the very first entry.
+            guard oldPR > 0, newPR > oldPR else { return }
+            celebratePR()
+        }
+    }
+    
+    private func celebratePR() {
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.5)) {
+            isCelebratingPR = true
+        }
+        Task {
+            try? await Task.sleep(for: .seconds(3))
+            withAnimation(.easeOut) {
+                isCelebratingPR = false
+            }
+        }
     }
     
     var plusToAction: some View {
@@ -48,7 +80,7 @@ struct ExerciseView: View {
                     Spacer()
                     Image(systemName: "plus.circle.fill")
                         .resizable()
-                        .foregroundStyle(Color("StartColor"))
+                        .foregroundStyle(Color.gustavVolt)
                         .frame(width: 40 * (plusSize + 1), height: 40 * (plusSize + 1))
                         .offset(x: (-position) + 30 + (position * 1.5) - position)
                         .onChange(of: geo.frame(in: .global)) { oldValue, newValue in
@@ -72,10 +104,6 @@ struct ExerciseView: View {
                 }
             }
         }
-    }
-    
-    func isExerciseFull() -> Bool {
-        return exercises.count >= 12
     }
     
     func getTitleOffset(length: Int) -> CGSize {

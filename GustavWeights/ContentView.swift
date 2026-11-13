@@ -6,23 +6,28 @@
 //
 
 import SwiftUI
+import GustavUICore
 import SwiftData
 
 struct ContentView: View {
     
-    let buttonHeight:CGFloat = 80.0
+    /// Maximum number of exercises, the app is meant for your main lifts.
+    static let maxExercises = 12
+    /// Height of the add exercise sheet: input field plus a control button.
+    static let inputSheetHeight: CGFloat = 220
     
     // SwiftData
-    @Query(sort: \Exercise.name) var exercises: [Exercise]
+    @Query(sort: Exercise.sortOrder) var exercises: [Exercise]
     @Environment(\.modelContext) var context
     
     @State private var isShowingAddExercise = false
     @State private var isShowingAddWeight = false
     @State private var exerciseToAddWeight: Exercise?
     @State private var exerciseToDetail: Exercise?
-    @State private var weightToEdit: Weight?
     @State private var scrolledExercise: Exercise?
-    @State private var scrolledToEnd: Bool = false
+    /// Exercise that was just created and should be scrolled to
+    /// as soon as it shows up in the query results.
+    @State private var exerciseToScrollTo: Exercise?
     
     @AppStorage("loadFirstExercise") private var loadFirstExercise = true
     
@@ -35,20 +40,15 @@ struct ContentView: View {
                 BGImageView(image: Image("Boxer"))
                 
                 VStack {
-                    HStack(spacing: 5) {
-                        ForEach(exercises) {exercise in
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill( exercise == scrolledExercise ? Color("StartColor") : Color("ResetColor") )
-                                .frame(height: 5)
-                                
-                        }
-                    }
-                    .padding()
+                    pageIndicator
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(spacing: 0) {
                             ForEach(exercises, id: \.self) {exercise in
-                                ExerciseView(exercise: exercise, geometry: geometry, lastExercise: (exercise == exercises.last)) {
+                                ExerciseView(exercise: exercise,
+                                             geometry: geometry,
+                                             lastExercise: (exercise == exercises.last),
+                                             canAddExercise: exercises.count < Self.maxExercises) {
                                     if !isShowingAddExercise {
                                         isShowingAddExercise.toggle()
                                     }
@@ -61,7 +61,7 @@ struct ContentView: View {
                         if exercises.isEmpty {
                             VStack {
                                 Text("ADD EXERCISE")
-                                    .font(Font.custom("MartianMono-Bold", size: 22))
+                                    .font(.weightsEmptyTitle)
                                     .padding()
                                 Text("to record your lifted weight, add exercise")
                                     .fixedSize(horizontal: false, vertical: true)
@@ -74,7 +74,7 @@ struct ContentView: View {
                                 
                             }
                             .padding()
-                            .foregroundStyle(Color("StartColor"))
+                            .foregroundStyle(Color.gustavVolt)
                         }
                     }
                     .task {
@@ -88,21 +88,20 @@ struct ContentView: View {
                             loadFirstExercise = false
                         }
                     }
-                    .onAppear(perform: {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            if !exercises.isEmpty && !loadFirstExercise {
-                                scrolledExercise = exercises[0]
-                            }
-                        }
-                    })
+                    .onChange(of: exercises, initial: true) {
+                        syncScrolledExercise()
+                    }
                     .scrollTargetBehavior(.viewAligned)
                     .scrollPosition(id: $scrolledExercise)
                     
                     // SHEETS
-                    .sheet(isPresented: $isShowingAddExercise, content: { AddExerciseSheet().presentationDetents([.height(150)]) })
-                    .sheet(item: $exerciseToAddWeight, content: { exercise in
-                        AddWeightSheet(exercise: exercise).presentationDetents([.height(150)]) })
-                    .sheet(item: $weightToEdit, content: { weight in EditWeightSheet(weight: weight) })
+                    .sheet(isPresented: $isShowingAddExercise, content: {
+                        AddExerciseSheet { exercise in
+                            exerciseToScrollTo = exercise
+                        }
+                        .presentationDetents([.height(Self.inputSheetHeight)])
+                    })
+                    .addWeightAlert(for: $exerciseToAddWeight)
                     .sheet(item: $exerciseToDetail, content: { exercise in DetailSheet(exercise: exercise) })
                     
                     if !exercises.isEmpty {
@@ -110,32 +109,83 @@ struct ContentView: View {
                     }
                 }
             }
-            .font(Font.custom("MartianMono-Regular", size: 15))
+            .font(.bodyNumber)
             .ignoresSafeArea(edges: .bottom)
         })
     }
     
-    var buttonBar: some View {
-        HStack(spacing: 0) {
-            Button(action: {
-                exerciseToAddWeight = scrolledExercise
-            }) {
-                Color("StopColor")
-                    .overlay {
-                        Text("ADD WEIGHT")
+    /// One segment per exercise at the top of the screen. Tapping a segment
+    /// scrolls to that exercise.
+    var pageIndicator: some View {
+        HStack(spacing: 5) {
+            ForEach(exercises) { exercise in
+                let isSelected = exercise == currentExercise
+                Button {
+                    withAnimation {
+                        scrolledExercise = exercise
                     }
-                    .frame(height: buttonHeight)
+                } label: {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(isSelected ? Color.gustavVolt : Color.gustavNeutral)
+                        .frame(height: 5)
+                        // The bar is only 5 pt tall, the vertical padding
+                        // gives it a comfortable tap target.
+                        .padding(.vertical, 16)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(exercise.name)
+                .accessibilityAddTraits(isSelected ? .isSelected : [])
             }
-            Button(action: {
-                exerciseToDetail = scrolledExercise
-            }, label: {
-                Color("ResetColor")
-                    .overlay {
-                        Text("DETAIL")
-                    }
-                    .frame(height: buttonHeight)
-            })
         }
-        .foregroundStyle(Color("StartColor"))
+        .padding(.horizontal)
+        // Tick when switching exercises (by tap or swipe), not on launch.
+        .sensoryFeedback(.selection, trigger: scrolledExercise) { oldValue, newValue in
+            oldValue != nil && newValue != nil
+        }
+    }
+    
+    /// Same layout as the GustavTimer controls: a wide primary pill
+    /// and a narrow secondary one.
+    var buttonBar: some View {
+        HStack(spacing: 16) {
+            ControlButton(label: "ADD WEIGHT") {
+                exerciseToAddWeight = currentExercise
+            }
+            ControlButton(systemImage: "chart.bar.xaxis",
+                          accessibilityLabel: "Detail",
+                          color: .gustavNeutral) {
+                exerciseToDetail = currentExercise
+            }
+            .frame(width: 100)
+        }
+        .animation(.easeInOut, value: currentExercise)
+        .frame(maxWidth: .infinity)
+        .padding()
+        .padding(.bottom, 5)
+        .padding(.horizontal, 5)
+    }
+    
+    /// The exercise the buttons act on. Falls back to the first one
+    /// in case the scroll position has not been reported yet.
+    private var currentExercise: Exercise? {
+        scrolledExercise ?? exercises.first
+    }
+    
+    /// Keeps `scrolledExercise` pointing at an existing exercise:
+    /// selects the first one on launch, jumps to a newly added one
+    /// and moves away from an exercise that was just deleted.
+    private func syncScrolledExercise() {
+        if let newExercise = exerciseToScrollTo, exercises.contains(newExercise) {
+            exerciseToScrollTo = nil
+            withAnimation {
+                scrolledExercise = newExercise
+            }
+            return
+        }
+        if let current = scrolledExercise, exercises.contains(current) {
+            return
+        }
+        scrolledExercise = exercises.first
     }
 }
