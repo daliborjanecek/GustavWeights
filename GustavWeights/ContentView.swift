@@ -30,6 +30,13 @@ struct ContentView: View {
     @State private var exerciseToScrollTo: Exercise?
     /// True while the finger is on the page indicator.
     @State private var isScrubbingIndicator = false
+    /// True while the finger is held down on the exercise cards and
+    /// scrubs as if it were on the page indicator. Resets itself when
+    /// the gesture ends or is cancelled.
+    @GestureState private var isHoldScrubbing = false
+    /// Page indicator bar in global coordinates, used to map a finger
+    /// held anywhere on the screen to an exercise.
+    @State private var indicatorFrame: CGRect = .zero
     
     @AppStorage("loadFirstExercise") private var loadFirstExercise = true
     
@@ -95,6 +102,13 @@ struct ContentView: View {
                     }
                     .scrollTargetBehavior(.viewAligned)
                     .scrollPosition(id: $scrolledExercise)
+                    // Hold a finger on the cards to scrub like on the page indicator.
+                    .simultaneousGesture(holdToScrubGesture)
+                    // While scrubbing, the finger must not also drag the cards.
+                    .scrollDisabled(isHoldScrubbing)
+                    .sensoryFeedback(.impact(weight: .medium), trigger: isHoldScrubbing) { _, isActive in
+                        isActive
+                    }
                     
                     // SHEETS
                     .sheet(isPresented: $isShowingAddExercise, content: {
@@ -125,11 +139,16 @@ struct ContentView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(exercise == currentExercise ? Color.gustavVolt : Color.gustavNeutral)
                     // Bars grow while scrubbing, so it's clear the finger controls them.
-                    .frame(height: isScrubbingIndicator ? 10 : 5)
+                    .frame(height: isScrubbing ? 10 : 5)
             }
         }
         // Fixed height, so the content below doesn't move while the bars grow.
         .frame(height: 10)
+        .onGeometryChange(for: CGRect.self) { proxy in
+            proxy.frame(in: .global)
+        } action: { frame in
+            indicatorFrame = frame
+        }
         // 37 pt tall touch area in total, the bars themselves are tiny.
         .padding(.vertical, 13.5)
         .overlay {
@@ -140,7 +159,7 @@ struct ContentView: View {
             }
         }
         .padding(.horizontal)
-        .animation(.snappy(duration: 0.2), value: isScrubbingIndicator)
+        .animation(.snappy(duration: 0.2), value: isScrubbing)
         // Tick on every exercise change (scrubbing, tap or swipe), not on launch.
         .sensoryFeedback(.selection, trigger: scrolledExercise) { oldValue, newValue in
             oldValue != nil && newValue != nil
@@ -169,6 +188,29 @@ struct ContentView: View {
             .onEnded { value in
                 selectExercise(atIndicatorX: value.location.x, width: width)
                 isScrubbingIndicator = false
+            }
+    }
+    
+    /// Finger on the page indicator or held on the cards.
+    private var isScrubbing: Bool {
+        isScrubbingIndicator || isHoldScrubbing
+    }
+    
+    /// Long press anywhere on the cards, then slide: the finger's horizontal
+    /// position picks the exercise exactly as if it were on the page indicator.
+    /// Moving before the press is recognised keeps normal swiping between cards.
+    private var holdToScrubGesture: some Gesture {
+        LongPressGesture(minimumDuration: 0.35)
+            .sequenced(before: DragGesture(minimumDistance: 0, coordinateSpace: .global))
+            .updating($isHoldScrubbing) { value, isActive, _ in
+                if case .second(true, _) = value {
+                    isActive = true
+                }
+            }
+            .onChanged { value in
+                guard case .second(true, let drag?) = value else { return }
+                selectExercise(atIndicatorX: drag.location.x - indicatorFrame.minX,
+                               width: indicatorFrame.width)
             }
     }
     
