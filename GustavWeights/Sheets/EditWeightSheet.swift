@@ -16,7 +16,7 @@ struct EditWeightSheet: View {
     var body: some View {
         NavigationStack {
                 Form {
-                    TextField("Váha", value: $weight.value, format: .number)
+                    TextField("Weight", value: $weight.value, format: .number)
                         .keyboardType(.decimalPad)
                 }
             
@@ -24,7 +24,7 @@ struct EditWeightSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Save") {
+                    Button("Done") {
                         dismiss()
                     }
                 }

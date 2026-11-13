@@ -14,6 +14,7 @@ struct DetailSheet: View {
     @Environment(\.modelContext) var context
     
     @State private var showingDialog = false
+    @State private var newName = ""
     
     var body: some View {
         NavigationStack {
@@ -58,7 +59,7 @@ struct DetailSheet: View {
             }
             .toolbar(content: {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Save") {
+                    Button("Done") {
                         dismiss()
                     }
                 }
@@ -79,14 +80,25 @@ struct DetailSheet: View {
     var renameExercise: some View {
         VStack {
             Form {
-            TextField("name", text: $exercise.name)
+                TextField("Name", text: $newName)
+                    .autocorrectionDisabled(true)
             }
 
             Spacer()
         }
+        .onAppear {
+            newName = exercise.name
+        }
+        .onChange(of: newName) {
+            // Never store an empty name, the card would be blank.
+            let trimmed = newName.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !trimmed.isEmpty {
+                exercise.name = trimmed
+            }
+        }
         .toolbar(content: {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                Button("Save") {
+                Button("Done") {
                     dismiss()
                 }
             }

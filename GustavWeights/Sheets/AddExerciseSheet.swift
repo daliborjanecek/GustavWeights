@@ -20,11 +20,17 @@ struct AddExerciseSheet: View {
         SingleValueEditView(
             textFieldPlaceholder: "Exercise",
             buttonLabelText: "Add",
-            text: $name) {
-                let exercise = Exercise(name: name)
+            text: $name,
+            isButtonEnabled: !trimmedName.isEmpty) {
+                guard !trimmedName.isEmpty else { return }
+                let exercise = Exercise(name: trimmedName)
                 context.insert(exercise)
                 onAdd(exercise)
                 dismiss()
             }
+    }
+    
+    private var trimmedName: String {
+        name.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

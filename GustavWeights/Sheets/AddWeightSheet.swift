@@ -20,12 +20,18 @@ struct AddWeightSheet: View {
         SingleValueEditView(
             textFieldPlaceholder: "Weight",
             buttonLabelText: "Save",
-            number: $value) {
-            if let value = value {
+            number: $value,
+            isButtonEnabled: isValueValid) {
+            if let value = value, isValueValid {
                 let weight = Weight(value: value)
                 exercise.weights.append(weight)
             }
             dismiss()
         }
+    }
+    
+    private var isValueValid: Bool {
+        guard let value else { return false }
+        return value.isFinite && value >= 0
     }
 }
