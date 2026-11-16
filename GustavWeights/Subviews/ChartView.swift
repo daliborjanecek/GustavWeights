@@ -71,10 +71,10 @@ struct ChartView: View {
                          yStart: .value("Lowest", isSingleValue ? max(day.low - pillPadding, domain.lowerBound) : day.low),
                          yEnd: .value("Heaviest", isSingleValue ? min(day.top + pillPadding, domain.upperBound) : day.top))
                     .lineStyle(StrokeStyle(lineWidth: barWidth, lineCap: .round))
-                    .foregroundStyle(day.top >= pr ? Color.gustavPink : barColor)
+                    .foregroundStyle(day.reaches(pr, higherIsBetter: exercise.higherIsBetter) ? Color.gustavPink : barColor)
                     .opacity(selectedLabel == nil || selectedLabel == day.label ? 1 : 0.3)
                     .accessibilityLabel(day.date.formatted(date: .abbreviated, time: .omitted))
-                    .accessibilityValue(day.accessibilityValue)
+                    .accessibilityValue(day.accessibilityValue(unit: exercise.unit))
             }
         }
         .chartYScale(domain: domain)
@@ -129,7 +129,7 @@ struct ChartView: View {
         var lower = (minValue / 10).rounded(.down) * 10
         var upper = (maxValue / 10).rounded(.up) * 10
         if lower == upper {
-            // All values are the same round number, e.g. 100 kg.
+            // All values are the same round number, e.g. 100.
             lower = max(lower - 10, 0)
             upper += 10
         }
@@ -140,7 +140,7 @@ struct ChartView: View {
 
     private func overallSummary(_ days: [TrainingDay]) -> some View {
         HStack(alignment: .top) {
-            stat("PR", value: "\(exercise.personalRecord.formattedString(maxDecimalPlaces: 2)) kg")
+            stat("PR", value: exercise.unit.format(exercise.personalRecord))
             stat("PROGRESS", value: progressText(days))
             stat("DAYS", value: "\(days.count)")
         }
@@ -152,8 +152,8 @@ struct ChartView: View {
                 .font(.sectionHeader)
                 .foregroundStyle(Color.gustavNeutral)
             HStack(alignment: .top) {
-                stat("TOP", value: "\(day.top.formattedString(maxDecimalPlaces: 2)) kg")
-                stat("LOWEST", value: "\(day.low.formattedString(maxDecimalPlaces: 2)) kg")
+                stat("TOP", value: exercise.unit.format(day.top))
+                stat("LOWEST", value: exercise.unit.format(day.low))
                 stat("ENTRIES", value: "\(day.entries)")
             }
         }
@@ -172,12 +172,13 @@ struct ChartView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    /// Difference between the top weight of the last and the first training day.
+    /// Difference between the best result of the last and the first training day.
     private func progressText(_ days: [TrainingDay]) -> String {
         guard days.count > 1, let first = days.first, let last = days.last else { return "–" }
-        let difference = last.top - first.top
+        let higherIsBetter = exercise.higherIsBetter
+        let difference = last.best(higherIsBetter: higherIsBetter) - first.best(higherIsBetter: higherIsBetter)
         let sign = difference > 0 ? "+" : ""
-        return "\(sign)\(difference.formattedString(maxDecimalPlaces: 2)) kg"
+        return "\(sign)\(exercise.unit.format(difference))"
     }
 
     // MARK: - Empty state
@@ -213,10 +214,20 @@ struct TrainingDay: Identifiable {
 
     var id: Date { date }
 
-    var accessibilityValue: String {
+    /// The best result of the day.
+    func best(higherIsBetter: Bool) -> Double {
+        higherIsBetter ? top : low
+    }
+
+    /// True when the day matched the personal record.
+    func reaches(_ personalRecord: Double, higherIsBetter: Bool) -> Bool {
+        higherIsBetter ? top >= personalRecord : low <= personalRecord
+    }
+
+    func accessibilityValue(unit: ExerciseUnit) -> String {
         low == top
-            ? "\(top.formattedString(maxDecimalPlaces: 2)) kilograms"
-            : "\(low.formattedString(maxDecimalPlaces: 2)) to \(top.formattedString(maxDecimalPlaces: 2)) kilograms"
+            ? unit.format(top)
+            : "\(low.formattedString(maxDecimalPlaces: 2)) to \(unit.format(top))"
     }
 
     /// Groups records by calendar day, sorted from the oldest day.

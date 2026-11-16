@@ -21,6 +21,7 @@
 		CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */; };
 		CFAA18B72BA5CFFC00235E1A /* AddExerciseAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */; };
 		CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */; };
+		CF0A11EA2F00000000000001 /* ExerciseUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E92F00000000000001 /* ExerciseUnit.swift */; };
 		CFE695182BC129EE002ECD65 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE695172BC129EE002ECD65 /* ExerciseView.swift */; };
 		CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E12F00000000000001 /* WeightsDesign.swift */; };
 		CF0A11E42F00000000000001 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E32F00000000000001 /* ControlButton.swift */; };
@@ -43,6 +44,7 @@
 		CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSheet.swift; sourceTree = "<group>"; };
 		CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseAlert.swift; sourceTree = "<group>"; };
 		CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		CF0A11E92F00000000000001 /* ExerciseUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseUnit.swift; sourceTree = "<group>"; };
 		CFE695172BC129EE002ECD65 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		CFE8593F2BA239E6001C3A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF0A11E12F00000000000001 /* WeightsDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightsDesign.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */,
+				CF0A11E92F00000000000001 /* ExerciseUnit.swift */,
 				CF9241012B9DD44C008A968D /* Weight.swift */,
 			);
 			path = Models;
@@ -217,6 +220,7 @@
 				CF1740AC2BA769BB00C7AC5C /* PersonalRecordView.swift in Sources */,
 				CF9240F62B9DD2F7008A968D /* ContentView.swift in Sources */,
 				CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */,
+				CF0A11EA2F00000000000001 /* ExerciseUnit.swift in Sources */,
 				CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */,
 				CFAA18B72BA5CFFC00235E1A /* AddExerciseAlert.swift in Sources */,
 				CF98C4B52BDEB2D700FA4E18 /* ChartView.swift in Sources */,

@@ -29,7 +29,7 @@ struct DetailSheet: View {
                     Section {
                         ForEach(sortedWeights) { weight in
                             NavigationLink {
-                                EditWeightSheet(weight: weight)
+                                EditWeightSheet(weight: weight, unit: exercise.unit)
                             } label: {
                                 historyRow(weight)
                             }
@@ -111,7 +111,7 @@ struct DetailSheet: View {
                     .background(Color.gustavPink, in: Capsule())
                     .accessibilityLabel("Personal record")
             }
-            Text("\(weight.value.formattedString(maxDecimalPlaces: 2)) kg")
+            Text(exercise.unit.format(weight.value))
                 .font(.bodyNumber)
         }
     }

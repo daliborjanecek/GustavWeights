@@ -2,7 +2,8 @@
 //  WeightPicker.swift
 //  GustavWeights
 //
-//  Hold ADD WEIGHT and slide the finger up or down to pick a weight.
+//  Hold ADD WEIGHT and slide the finger up or down to pick a weight
+//  (or the number of reps, or a time, depending on the exercise unit).
 //  The step and range come from the exercise's history.
 //
 
@@ -23,6 +24,8 @@ struct WeightPickerScale: Equatable {
     let step: Double
     let start: Double
     let personalRecord: Double
+    let unit: ExerciseUnit
+    let higherIsBetter: Bool
 
     /// Nil when the exercise has no records yet, there is no PR to build a range around.
     init?(exercise: Exercise) {
@@ -30,7 +33,8 @@ struct WeightPickerScale: Equatable {
         let pr = exercise.personalRecord
         guard pr > 0 else { return nil }
 
-        let step = Self.step(for: values)
+        // Repetitions are always whole numbers.
+        let step = exercise.unit.allowsDecimals ? Self.step(for: values) : 1
         let lower = max((pr * (1 - Self.rangeFraction) / step).rounded(.up) * step, 0)
         let upper = max((pr * (1 + Self.rangeFraction) / step).rounded(.down) * step, lower)
         // Start at the last logged weight: most sets are close to the previous one.
@@ -40,6 +44,8 @@ struct WeightPickerScale: Equatable {
         self.lower = Self.clean(lower)
         self.upper = Self.clean(upper)
         self.personalRecord = pr
+        self.unit = exercise.unit
+        self.higherIsBetter = exercise.higherIsBetter
         self.start = Self.clean(min(max((last / step).rounded() * step, lower), upper))
     }
 
@@ -105,7 +111,7 @@ struct WeightPickerOverlay: View {
     var body: some View {
         let value = scale.value(for: translation)
         let isCancelled = WeightPickerScale.isCancelled(translation)
-        let isNewPR = value > scale.personalRecord
+        let isNewPR = scale.higherIsBetter ? value > scale.personalRecord : value < scale.personalRecord
 
         ZStack {
             Color.black.opacity(0.8)
@@ -124,7 +130,7 @@ struct WeightPickerOverlay: View {
                         .frame(height: 140, alignment: .leading)
                         .contentTransition(.numericText(value: value))
 
-                    Text("KG")
+                    Text(scale.unit.symbol.uppercased())
                         .font(.weightsValue)
 
                     if isNewPR {

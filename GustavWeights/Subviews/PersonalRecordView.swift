@@ -11,7 +11,7 @@ struct PersonalRecordView: View {
     let exercise: Exercise
     
     var body: some View {
-        Text("PR:\(exercise.personalRecord.formattedString(maxDecimalPlaces: 2))KG")
+        Text("PR:\(exercise.unit.compactFormat(exercise.personalRecord))")
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

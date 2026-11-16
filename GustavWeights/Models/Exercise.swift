@@ -14,13 +14,20 @@ class Exercise {
     /// Position on the main screen, set by the user in Reorder exercises.
     /// Exercises with the same order (e.g. all existing ones = 0) are sorted by name.
     var order: Int = 0
+    /// Raw value of `ExerciseUnit`. Existing exercises are in kilograms.
+    var unitRawValue: String = ExerciseUnit.kilograms.rawValue
+    /// True when a bigger number is a better result (weight, reps),
+    /// false e.g. for the time of a run.
+    var higherIsBetter: Bool = true
     /// Deleting an exercise deletes all of its records too,
     /// so no orphaned `Weight` objects stay in the store.
     @Relationship(deleteRule: .cascade) var weights: [Weight]
-    
-    init(name: String, order: Int = 0) {
+
+    init(name: String, order: Int = 0, unit: ExerciseUnit = .kilograms, higherIsBetter: Bool = true) {
         self.name = name
         self.order = order
+        self.unitRawValue = unit.rawValue
+        self.higherIsBetter = higherIsBetter
         self.weights = []
     }
 }
@@ -30,9 +37,21 @@ extension Exercise {
     static var sortOrder: [SortDescriptor<Exercise>] {
         [SortDescriptor(\.order), SortDescriptor(\.name)]
     }
-    
-    /// The heaviest weight ever logged, or 0 when there is no record yet.
+
+    var unit: ExerciseUnit {
+        get { ExerciseUnit(rawValue: unitRawValue) ?? .kilograms }
+        set { unitRawValue = newValue.rawValue }
+    }
+
+    /// The best value ever logged (the highest, or the lowest when lower
+    /// is better), 0 when there is no record yet.
     var personalRecord: Double {
-        weights.map(\.value).max() ?? 0
+        let values = weights.map(\.value)
+        return (higherIsBetter ? values.max() : values.min()) ?? 0
+    }
+
+    /// True when `value` is a better result than `other` for this exercise.
+    func isBetter(_ value: Double, than other: Double) -> Bool {
+        higherIsBetter ? value > other : value < other
     }
 }

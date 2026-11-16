@@ -55,7 +55,8 @@ struct ExerciseView: View {
         }
         .onChange(of: exercise.personalRecord) { oldPR, newPR in
             // Celebrate only beating an existing record, not the very first entry.
-            guard oldPR > 0, newPR > oldPR else { return }
+            // (With lower is better a first entry goes from 0 up, so it is not "better".)
+            guard oldPR > 0, exercise.isBetter(newPR, than: oldPR) else { return }
             celebratePR()
         }
     }

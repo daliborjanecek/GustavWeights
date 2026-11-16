@@ -10,16 +10,17 @@ import GustavUICore
 
 struct EditWeightSheet: View {
     @Bindable var weight: Weight
+    let unit: ExerciseUnit
     @Environment(\.dismiss) private var dismiss
     
     // Pushed from DetailSheet's NavigationStack, so it has no stack of its own.
     var body: some View {
         Form {
             HStack {
-                TextField("Weight", value: $weight.value, format: .number)
-                    .keyboardType(.decimalPad)
+                TextField("Value", value: $weight.value, format: .number)
+                    .keyboardType(unit.allowsDecimals ? .decimalPad : .numberPad)
                     .font(.bodyNumber)
-                Text("kg")
+                Text(unit.symbol)
                     .foregroundStyle(Color.gustavNeutral)
             }
             // Lets you fix the date of an entry or log a session afterwards.
@@ -29,7 +30,7 @@ struct EditWeightSheet: View {
                        displayedComponents: [.date, .hourAndMinute])
         }
         .font(.gustavBody)
-        .navigationTitle("Edit weight")
+        .navigationTitle("Edit entry")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(content: {
             ToolbarItemGroup(placement: .topBarTrailing) {

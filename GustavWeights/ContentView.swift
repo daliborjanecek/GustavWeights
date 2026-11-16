@@ -267,7 +267,7 @@ struct ContentView: View {
     /// Tap: alert with a number field. Hold and slide up/down: pick the weight
     /// from a range around the PR, release to save (see WeightPicker.swift).
     var addWeightButton: some View {
-        ControlButtonLabel(label: "ADD WEIGHT")
+        ControlButtonLabel(label: currentExercise?.unit.addButtonLabel ?? "ADD WEIGHT")
             .contentShape(Rectangle())
             .gesture(
                 holdToPickWeightGesture.exclusively(
@@ -280,7 +280,7 @@ struct ContentView: View {
                 isPicking
             }
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Add weight")
+            .accessibilityLabel(currentExercise?.unit.addTitle ?? "Add weight")
             .accessibilityAddTraits(.isButton)
             .accessibilityAction {
                 exerciseToAddWeight = currentExercise
