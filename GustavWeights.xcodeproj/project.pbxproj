@@ -19,7 +19,7 @@
 		CFAA18AF2BA5CA0600235E1A /* AddWeightAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */; };
 		CFAA18B32BA5CF6100235E1A /* EditWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */; };
 		CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */; };
-		CFAA18B72BA5CFFC00235E1A /* AddExerciseAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */; };
+		CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */; };
 		CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */; };
 		CF0A11EA2F00000000000001 /* ExerciseUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E92F00000000000001 /* ExerciseUnit.swift */; };
 		CFE695182BC129EE002ECD65 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE695172BC129EE002ECD65 /* ExerciseView.swift */; };
@@ -43,7 +43,7 @@
 		CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeightAlert.swift; sourceTree = "<group>"; };
 		CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeightSheet.swift; sourceTree = "<group>"; };
 		CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSheet.swift; sourceTree = "<group>"; };
-		CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseAlert.swift; sourceTree = "<group>"; };
+		CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseSheet.swift; sourceTree = "<group>"; };
 		CFD9B2B92B9DEEA900EB7062 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		CF0A11E92F00000000000001 /* ExerciseUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseUnit.swift; sourceTree = "<group>"; };
 		CFE695172BC129EE002ECD65 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				CFAA18B22BA5CF6100235E1A /* EditWeightSheet.swift */,
-				CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */,
+				CFAA18B62BA5CFFC00235E1A /* AddExerciseSheet.swift */,
 				CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */,
 				CF0A11E52F00000000000001 /* ReorderExercisesView.swift */,
 				CF0A11EB2F00000000000001 /* ExerciseSettingsView.swift */,
@@ -225,7 +225,7 @@
 				CFD9B2BA2B9DEEA900EB7062 /* Exercise.swift in Sources */,
 				CF0A11EA2F00000000000001 /* ExerciseUnit.swift in Sources */,
 				CFAA18B52BA5CF8000235E1A /* DetailSheet.swift in Sources */,
-				CFAA18B72BA5CFFC00235E1A /* AddExerciseAlert.swift in Sources */,
+				CFAA18B72BA5CFFC00235E1A /* AddExerciseSheet.swift in Sources */,
 				CF98C4B52BDEB2D700FA4E18 /* ChartView.swift in Sources */,
 				CF9240F42B9DD2F7008A968D /* GustavWeightsApp.swift in Sources */,
 				CF00F46A2BA6278A0012826C /* BGImageView.swift in Sources */,

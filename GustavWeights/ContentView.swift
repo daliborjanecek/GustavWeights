@@ -130,10 +130,10 @@ struct ContentView: View {
                 }
             }
             .animation(.easeInOut(duration: 0.2), value: weightPickTranslation == nil)
-            // Kept on a different view than the add weight alert,
-            // two alerts on one view don't work reliably.
-            .addExerciseAlert(isPresented: $isShowingAddExercise) { exercise in
-                exerciseToScrollTo = exercise
+            .sheet(isPresented: $isShowingAddExercise) {
+                AddExerciseSheet { exercise in
+                    exerciseToScrollTo = exercise
+                }
             }
             .font(.bodyNumber)
             .ignoresSafeArea(edges: .bottom)
