@@ -67,8 +67,7 @@ struct ControlButton: View {
     }
 }
 
-/// Look of a text ControlButton without the Button itself, for controls
-/// that need their own gestures (e.g. ADD WEIGHT with tap and hold).
+/// Look of a text ControlButton without the Button itself.
 struct ControlButtonLabel: View {
     let label: LocalizedStringKey
     var description: String? = nil
