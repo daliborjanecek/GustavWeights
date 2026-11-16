@@ -38,31 +38,53 @@ struct ExerciseSettingsFields: View {
         }
 
         Section {
-            Picker("Unit", selection: $unit) {
-                ForEach(ExerciseUnit.allCases) { unit in
-                    Text(unit.pickerTitle).tag(unit)
+            ForEach(ExerciseUnit.allCases) { option in
+                checkmarkRow(option.title, isSelected: unit == option) {
+                    unit = option
                 }
             }
-            .pickerStyle(.segmented)
         } header: {
             sectionHeader("UNIT")
         } footer: {
             sectionFooter(hasEntries
-                          ? "Use REPS for exercises like pull-ups. Changing the unit only relabels the logged entries, it doesn't convert them."
-                          : "Use REPS for exercises like pull-ups, where only the count matters.")
+                          ? "Use Repetitions for exercises like pull-ups. Changing the unit only relabels the logged entries, it doesn't convert them."
+                          : "Use Repetitions for exercises like pull-ups, where only the count matters.")
         }
 
         Section {
-            Picker("Better result", selection: $higherIsBetter) {
-                Text("HIGHER").tag(true)
-                Text("LOWER").tag(false)
+            checkmarkRow("Higher is better", isSelected: higherIsBetter) {
+                higherIsBetter = true
             }
-            .pickerStyle(.segmented)
+            checkmarkRow("Lower is better", isSelected: !higherIsBetter) {
+                higherIsBetter = false
+            }
         } header: {
             sectionHeader("BETTER RESULT")
         } footer: {
-            sectionFooter("Decides which entry is your PR. Choose LOWER e.g. for the time of a run.")
+            sectionFooter("Decides which entry is your PR. Choose Lower is better e.g. for the time of a run.")
         }
+    }
+
+    /// Settings-style option row: the selected one has a checkmark at the trailing edge.
+    private func checkmarkRow(_ title: LocalizedStringKey,
+                              isSelected: Bool,
+                              action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                Text(title)
+                    .foregroundStyle(Color.primary)
+                Spacer()
+                if isSelected {
+                    Image(systemName: "checkmark")
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.tint)
+                }
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .sensoryFeedback(.selection, trigger: isSelected) { _, selected in selected }
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
     private func sectionHeader(_ title: LocalizedStringKey) -> some View {

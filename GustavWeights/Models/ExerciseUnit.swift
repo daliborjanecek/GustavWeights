@@ -26,13 +26,13 @@ enum ExerciseUnit: String, CaseIterable, Identifiable {
         }
     }
 
-    /// Label of the unit picker.
-    var pickerTitle: LocalizedStringKey {
+    /// Row title in the exercise settings.
+    var title: LocalizedStringKey {
         switch self {
-        case .kilograms: "KG"
-        case .pounds: "LB"
-        case .reps: "REPS"
-        case .seconds: "SEC"
+        case .kilograms: "Kilograms (kg)"
+        case .pounds: "Pounds (lb)"
+        case .reps: "Repetitions"
+        case .seconds: "Seconds (s)"
         }
     }
 
