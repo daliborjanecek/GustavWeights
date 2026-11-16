@@ -39,7 +39,7 @@ struct ExerciseSettingsFields: View {
 
         Section {
             ForEach(ExerciseUnit.allCases) { option in
-                checkmarkRow(option.title, isSelected: unit == option) {
+                optionRow(option.title, isSelected: unit == option) {
                     unit = option
                 }
             }
@@ -52,10 +52,10 @@ struct ExerciseSettingsFields: View {
         }
 
         Section {
-            checkmarkRow("Higher is better", isSelected: higherIsBetter) {
+            optionRow("Higher is better", isSelected: higherIsBetter) {
                 higherIsBetter = true
             }
-            checkmarkRow("Lower is better", isSelected: !higherIsBetter) {
+            optionRow("Lower is better", isSelected: !higherIsBetter) {
                 higherIsBetter = false
             }
         } header: {
@@ -65,26 +65,21 @@ struct ExerciseSettingsFields: View {
         }
     }
 
-    /// Settings-style option row: the selected one has a checkmark at the trailing edge.
-    private func checkmarkRow(_ title: LocalizedStringKey,
-                              isSelected: Bool,
-                              action: @escaping () -> Void) -> some View {
-        Button(action: action) {
+    /// Option row from GustavUI, the selected one is highlighted.
+    private func optionRow(_ title: LocalizedStringKey,
+                           isSelected: Bool,
+                           action: @escaping () -> Void) -> some View {
+        GustavSelectableListRow(selected: isSelected) {
             HStack {
                 Text(title)
-                    .foregroundStyle(Color.primary)
                 Spacer()
-                if isSelected {
-                    Image(systemName: "checkmark")
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.tint)
-                }
             }
-            .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
+        .onTapGesture(perform: action)
         .sensoryFeedback(.selection, trigger: isSelected) { _, selected in selected }
-        .accessibilityAddTraits(isSelected ? .isSelected : [])
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
+        .accessibilityAction { action() }
     }
 
     private func sectionHeader(_ title: LocalizedStringKey) -> some View {
