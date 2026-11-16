@@ -26,6 +26,7 @@
 		CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E12F00000000000001 /* WeightsDesign.swift */; };
 		CF0A11E42F00000000000001 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E32F00000000000001 /* ControlButton.swift */; };
 		CF0A11E62F00000000000001 /* ReorderExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E52F00000000000001 /* ReorderExercisesView.swift */; };
+		CF0A11EC2F00000000000001 /* ExerciseSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11EB2F00000000000001 /* ExerciseSettingsView.swift */; };
 		CF0A11E82F00000000000001 /* WeightPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0A11E72F00000000000001 /* WeightPicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		CF0A11E12F00000000000001 /* WeightsDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightsDesign.swift; sourceTree = "<group>"; };
 		CF0A11E32F00000000000001 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
 		CF0A11E52F00000000000001 /* ReorderExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderExercisesView.swift; sourceTree = "<group>"; };
+		CF0A11EB2F00000000000001 /* ExerciseSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSettingsView.swift; sourceTree = "<group>"; };
 		CF0A11E72F00000000000001 /* WeightPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				CFAA18B62BA5CFFC00235E1A /* AddExerciseAlert.swift */,
 				CFAA18B42BA5CF8000235E1A /* DetailSheet.swift */,
 				CF0A11E52F00000000000001 /* ReorderExercisesView.swift */,
+				CF0A11EB2F00000000000001 /* ExerciseSettingsView.swift */,
 				CFAA18AE2BA5CA0600235E1A /* AddWeightAlert.swift */,
 			);
 			path = Sheets;
@@ -232,6 +235,7 @@
 				CF0A11E22F00000000000001 /* WeightsDesign.swift in Sources */,
 				CF0A11E42F00000000000001 /* ControlButton.swift in Sources */,
 				CF0A11E62F00000000000001 /* ReorderExercisesView.swift in Sources */,
+				CF0A11EC2F00000000000001 /* ExerciseSettingsView.swift in Sources */,
 				CF0A11E82F00000000000001 /* WeightPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
