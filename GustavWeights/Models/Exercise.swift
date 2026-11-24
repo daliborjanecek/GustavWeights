@@ -16,9 +16,13 @@ class Exercise {
     var order: Int = 0
     /// Raw value of `ExerciseUnit`. Existing exercises are in kilograms.
     var unitRawValue: String = ExerciseUnit.kilograms.rawValue
-    /// True when a bigger number is a better result (weight, reps),
-    /// false e.g. for the time of a run.
-    var higherIsBetter: Bool = true
+    /// True when a smaller number is a better result, e.g. the time of a run.
+    /// Stored inverted (see `higherIsBetter`): when SwiftData migrates exercises
+    /// created before this property existed, it fills the new column with
+    /// false and ignores the default value written here. With a stored
+    /// `higherIsBetter = true` those exercises became "lower is better",
+    /// so their PR turned into the lowest weight ever logged.
+    var lowerIsBetter: Bool = false
     /// Deleting an exercise deletes all of its records too,
     /// so no orphaned `Weight` objects stay in the store.
     @Relationship(deleteRule: .cascade) var weights: [Weight]
@@ -27,7 +31,7 @@ class Exercise {
         self.name = name
         self.order = order
         self.unitRawValue = unit.rawValue
-        self.higherIsBetter = higherIsBetter
+        self.lowerIsBetter = !higherIsBetter
         self.weights = []
     }
 }
@@ -41,6 +45,13 @@ extension Exercise {
     var unit: ExerciseUnit {
         get { ExerciseUnit(rawValue: unitRawValue) ?? .kilograms }
         set { unitRawValue = newValue.rawValue }
+    }
+
+    /// True when a bigger number is a better result (weight, reps),
+    /// false e.g. for the time of a run.
+    var higherIsBetter: Bool {
+        get { !lowerIsBetter }
+        set { lowerIsBetter = !newValue }
     }
 
     /// The best value ever logged (the highest, or the lowest when lower
