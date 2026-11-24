@@ -56,3 +56,6 @@ fastlane/test_output
 .env.*
 Secrets.swift
 Config.xcconfig
+
+# Xcode Cloud: TestFlight notes written by ci_scripts/ci_post_xcodebuild.sh
+TestFlight/
